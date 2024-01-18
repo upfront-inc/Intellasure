@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react';
+import { auth } from './auth/Firebase';
+import LoadingScreen from './screens/LoadingScreen';
+import LoginScreen from './screens/LoginScreen';
+import ContentScreen from './screens/ContentScreen';
 
 function App() {
+  const [currentView, setCurrentView] = useState('loading')
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setCurrentView('content');
+        // grabUserInfo();
+        // grabInformation();
+      } else {
+        setCurrentView('login');
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        currentView === 'loading'
+          ? <LoadingScreen />
+          : currentView === 'login'
+              ? <LoginScreen />
+              : currentView === 'content'
+                  ? <ContentScreen />
+                  : null
+      }
     </div>
   );
 }
