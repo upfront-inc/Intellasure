@@ -21,3 +21,7 @@
     transform: rotate(360deg);
   }
 }
+
+p {
+  margin: 0;
+}

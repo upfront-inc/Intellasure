@@ -102,6 +102,9 @@ const LoginComponent = (props) => {
               onChange={handleLoginPasswordChange} 
             />
           </div>
+          <div onClick={() => {setCurrentTab('Reset')}} className='forgot-password-button'>
+            <p className='forgot-password-text'>Forgot Password</p>
+          </div>
         </div>
         <div className='buttons-container'>
           <button className='button' onClick={() => {loginUser()}}>Login</button>

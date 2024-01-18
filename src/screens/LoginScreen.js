@@ -1,8 +1,9 @@
 import '../css/login.css'
 import React, { useState } from 'react'
 import image from '../assets/IntellasuranceLogo_2.png'
-import SignupScreen from './SignupScreen'
 import LoginComponent from '../components/LoginComponent'
+import SignupComponent from '../components/SignupComponent'
+import ForgotPasswordComponent from '../components/ForgotPasswordComponent'
 
 const LoginScreen = (props) => {
     const {
@@ -20,7 +21,9 @@ const LoginScreen = (props) => {
           {
             currentTab === 'Login'
               ? <LoginComponent setCurrentView={setCurrentView} setCurrentTab={setCurrentTab}/>
-              : <SignupScreen setCurrentView={setCurrentView} setCurrentTab={setCurrentTab}/>
+              : currentTab === 'Reset'
+                  ? <ForgotPasswordComponent setCurrentView={setCurrentView} setCurrentTab={setCurrentTab}/>
+                  : <SignupComponent setCurrentView={setCurrentView} setCurrentTab={setCurrentTab}/>
           }
         </div>
       </div>
