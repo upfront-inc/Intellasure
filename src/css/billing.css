@@ -1,0 +1,55 @@
+.main-billing-content {
+  display: flex; 
+  flex-direction: column; 
+  height: 100vh;
+}
+
+.top-bar {
+  height: 58px;
+}
+
+.main-content {
+  flex-grow: 1;
+  margin-top: 8px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-content-area {
+  width: 97%;
+  height: 98%;
+  overflow: scroll; 
+}
+
+.table-container {
+  width: 100%;
+  max-height: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.table-container th {
+  position: sticky;
+  top: 0;
+  background-color: #202020;
+  color: black;
+  border: none;
+  text-align: center;
+  padding: 24px 8px;
+  color: white;
+  font-weight: 'bold';
+  font-size: 16px;
+}
+
+.table-container td {
+  border: none;
+  text-align: center;
+  font-weight: 500;
+  padding: 24px 8px;
+  font-size: 14px;
+  border-bottom: 2px solid #e3e3e3;
+  /* 16px vertical padding */
+}

@@ -1,5 +1,5 @@
 import SidebarComponent from '../components/SidebarComponent'
-import TopBarComponent from '../components/TopBarComponent'
+import BillingComponent from '../components/content/BillingComponent'
 import '../css/content.css'
 import React, { useState } from 'react'
 
@@ -35,16 +35,18 @@ const ContentScreen = (props) => {
             </div>
       }
       <div className='content'>
-        <div className='top-bar'>  
-          <TopBarComponent 
-            contentTab={contentTab} 
-            setContentTab={setContentTab} 
-            userAccess={userAccess}
-            setCurrentView={setCurrentView}
-            menuSize={menuSize}
-            setMenuSize={setMenuSize}
-          />
-        </div>
+        {
+          contentTab === 'billing'
+            ? <BillingComponent 
+                contentTab={contentTab} 
+                setContentTab={setContentTab} 
+                userAccess={userAccess}
+                setCurrentView={setCurrentView}
+                menuSize={menuSize}
+                setMenuSize={setMenuSize}
+              />
+            : null
+        }
       </div>
     </div>
   )
