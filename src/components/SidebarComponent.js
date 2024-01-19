@@ -5,7 +5,7 @@ import image2 from '../assets/logo.png'
 import { signOut } from 'firebase/auth'
 import { auth } from '../auth/Firebase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock, faList, faMoneyCheck, faMoneyBills, faUsers, faCode, faTicket, faReceipt, faQuestionCircle, faRightFromBracket, faChevronRight, faChevronLeft, faTentArrowTurnLeft, faLeftLong, faAlignLeft, faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faList, faMoneyBills, faUsers, faCode, faReceipt, faQuestionCircle, faRightFromBracket, faAnglesLeft, faAnglesRight, faShield, faShieldAlt } from '@fortawesome/free-solid-svg-icons'
 
 const SidebarComponent = (props) => {
   const {
@@ -41,7 +41,7 @@ const SidebarComponent = (props) => {
           {
             contentTab === 'billing'
               ? <div className='icon-label-button selected'>
-                  <FontAwesomeIcon icon={faList} className="icon-menu"/>
+                  <FontAwesomeIcon icon={faShieldAlt} className="icon-menu"/>
                   {
                     menuSize === 'half'
                       ? null

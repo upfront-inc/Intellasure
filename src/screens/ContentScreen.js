@@ -1,4 +1,5 @@
 import SidebarComponent from '../components/SidebarComponent'
+import TopBarComponent from '../components/TopBarComponent'
 import '../css/content.css'
 import React, { useState } from 'react'
 
@@ -19,7 +20,8 @@ const ContentScreen = (props) => {
                 userAccess={userAccess}
                 setCurrentView={setCurrentView}
                 menuSize={menuSize}
-                setMenuSize={setMenuSize}/>
+                setMenuSize={setMenuSize}
+              />
             </div>
           : <div className='sidebar-container-half'>
               <SidebarComponent 
@@ -28,11 +30,21 @@ const ContentScreen = (props) => {
                 userAccess={userAccess}
                 setCurrentView={setCurrentView}
                 menuSize={menuSize}
-                setMenuSize={setMenuSize}/>
+                setMenuSize={setMenuSize}
+              />
             </div>
       }
-      <div>
-        
+      <div className='content'>
+        <div className='top-bar'>  
+          <TopBarComponent 
+            contentTab={contentTab} 
+            setContentTab={setContentTab} 
+            userAccess={userAccess}
+            setCurrentView={setCurrentView}
+            menuSize={menuSize}
+            setMenuSize={setMenuSize}
+          />
+        </div>
       </div>
     </div>
   )
