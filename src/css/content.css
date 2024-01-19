@@ -1,0 +1,16 @@
+.content-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.sidebar-container {
+  width: 260px;
+  height: 100vh;
+  background-color: #e8e8e8;
+}
+
+.sidebar-container-half {
+  width: 60px;
+  height: 100vh;
+  background-color: #e8e8e8;
+}

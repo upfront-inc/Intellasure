@@ -1,9 +1,39 @@
-import React from 'react'
+import SidebarComponent from '../components/SidebarComponent'
+import '../css/content.css'
+import React, { useState } from 'react'
 
-const ContentScreen = () => {
+const ContentScreen = (props) => {
+  const {userAccess, setCurrentView} = props
+
+  const [contentTab, setContentTab] = useState('billing')
+  const [menuSize, setMenuSize] = useState('full')
+
   return (
-    <div>
-      <p>content screen</p>
+    <div className='content-container'>
+      {
+        menuSize === 'full'
+          ? <div className='sidebar-container'>
+              <SidebarComponent 
+                contentTab={contentTab} 
+                setContentTab={setContentTab} 
+                userAccess={userAccess}
+                setCurrentView={setCurrentView}
+                menuSize={menuSize}
+                setMenuSize={setMenuSize}/>
+            </div>
+          : <div className='sidebar-container-half'>
+              <SidebarComponent 
+                contentTab={contentTab} 
+                setContentTab={setContentTab} 
+                userAccess={userAccess}
+                setCurrentView={setCurrentView}
+                menuSize={menuSize}
+                setMenuSize={setMenuSize}/>
+            </div>
+      }
+      <div>
+        
+      </div>
     </div>
   )
 }
