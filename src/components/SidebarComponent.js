@@ -1,5 +1,6 @@
 import React from 'react'
 import '../css/sidebar.css'
+import '../css/general.css'
 import image from '../assets/IntellasuranceLogo_2.png'
 import image2 from '../assets/logo.png'
 import { signOut } from 'firebase/auth'
@@ -37,7 +38,7 @@ const SidebarComponent = (props) => {
               : <img style={{height: '46px', width: '46px'}} src={image2} alt='Intellisurance logo'/>
           }
         </div>
-        <div className='sidebar-tabs-menu'>
+        <div className='sidebar-tabs-menu hover-paragraph'>
           {
             contentTab === 'billing'
               ? <div className='icon-label-button selected'>
@@ -70,7 +71,7 @@ const SidebarComponent = (props) => {
                               : <p className='icon-text'>Daily Rates</p>
                           }
                         </div>
-                      : <div className='icon-label-button' onClick={() => {setContentTab('daily')}}>
+                      : <div className='icon-label-button hover' onClick={() => {setContentTab('daily')}}>
                           <FontAwesomeIcon icon={faMoneyBills} className="icon-menu"/>
                           {
                             menuSize === 'half'

@@ -1,4 +1,5 @@
 import SidebarComponent from '../components/SidebarComponent'
+import AccountComponent from '../components/content/Accounts/AccountComponent'
 import BillingComponent from '../components/content/Billing/BillingComponent'
 import DailyRateComponent from '../components/content/DailyRates/DailyRateComponent'
 import '../css/content.css'
@@ -59,7 +60,16 @@ const ContentScreen = (props) => {
                     menuSize={menuSize}
                     setMenuSize={setMenuSize}
                   />
-                : null
+                : contentTab === 'accounts'
+                    ? <AccountComponent 
+                        contentTab={contentTab} 
+                        setContentTab={setContentTab} 
+                        userAccess={userAccess}
+                        setCurrentView={setCurrentView}
+                        menuSize={menuSize}
+                        setMenuSize={setMenuSize}
+                      />
+                    : null
         }
       </div>
     </div>
