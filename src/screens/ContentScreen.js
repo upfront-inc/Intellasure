@@ -1,4 +1,5 @@
 import SidebarComponent from '../components/SidebarComponent'
+import SupportComponent from '../components/SupportComponent'
 import AccountComponent from '../components/content/Accounts/AccountComponent'
 import BillingComponent from '../components/content/Billing/BillingComponent'
 import DailyRateComponent from '../components/content/DailyRates/DailyRateComponent'
@@ -79,7 +80,9 @@ const ContentScreen = (props) => {
                             menuSize={menuSize}
                             setMenuSize={setMenuSize}
                           />
-                        : null
+                        : contentTab === 'help'
+                            ? <SupportComponent/>
+                            : null
         }
       </div>
     </div>
