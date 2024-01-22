@@ -20,10 +20,9 @@ const BillingTableContentComponent = (props) => {
     <>
       {
         records.map((record) => {
-          console.log(record)
           return(
             <tr>
-              <td>{record.data.prefix}</td>
+              <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
               <td>{limitString(record.data.insuranceName)}</td>
               <td>{record.data.network}</td>
               <td>{record.data.facility}</td>

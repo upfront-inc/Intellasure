@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import BilingTableComponent from './BilingTableComponent'
 import BillingSearchComponent from './BillingSearchComponent'
-import '../../css/billing.css'
+import '../../../css/billing.css'
 import { collection, onSnapshot } from 'firebase/firestore'
-import { db } from '../../auth/Firebase'
+import { db } from '../../../auth/Firebase'
 
 const BillingComponent = (props) => {
 

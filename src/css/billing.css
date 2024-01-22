@@ -19,9 +19,12 @@
 }
 
 .main-content-area {
-  width: 97%;
+  width: 100%;
   height: 98%;
+  border-radius: 10px;
   overflow: scroll; 
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 .table-container {
