@@ -2,6 +2,7 @@ import SidebarComponent from '../components/SidebarComponent'
 import AccountComponent from '../components/content/Accounts/AccountComponent'
 import BillingComponent from '../components/content/Billing/BillingComponent'
 import DailyRateComponent from '../components/content/DailyRates/DailyRateComponent'
+import TicketComponent from '../components/content/Tickets/TicketComponent'
 import '../css/content.css'
 import React, { useEffect, useState } from 'react'
 
@@ -69,7 +70,16 @@ const ContentScreen = (props) => {
                         menuSize={menuSize}
                         setMenuSize={setMenuSize}
                       />
-                    : null
+                    : contentTab === 'tickets'
+                        ? <TicketComponent 
+                            contentTab={contentTab} 
+                            setContentTab={setContentTab} 
+                            userAccess={userAccess}
+                            setCurrentView={setCurrentView}
+                            menuSize={menuSize}
+                            setMenuSize={setMenuSize}
+                          />
+                        : null
         }
       </div>
     </div>
