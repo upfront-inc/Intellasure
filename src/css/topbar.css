@@ -139,7 +139,7 @@
 .sort-options-container-dark {
   display: none; 
   position: absolute; 
-  background-color: #292929;
+  background-color: rgb(58, 58, 58);
   border: 1px solid black;
   padding: 10px;
   z-index: 10; 
@@ -179,7 +179,7 @@
 .facility-filter-container-dark {
   display: none; /* Initially hidden */
   position: absolute; /* Adjust as needed based on layout */
-  background-color: #292929;
+  background-color: rgb(58, 58, 58);
   border: 1px solid black;
   padding: 10px;
   z-index: 10;  
@@ -204,4 +204,45 @@
 .facility-filter-container-dark div {
   padding: 5px;
   cursor: pointer;
+}
+
+.column-options-container {
+  display: none; /* Initially hidden */
+  position: absolute; /* Adjust as needed based on layout */
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 10;
+  text-align: left;
+  top: 50px;
+  right: 85px;
+}
+
+.column-options-container-dark {
+  display: none; /* Initially hidden */
+  position: absolute; /* Adjust as needed based on layout */
+  background-color: rgb(58, 58, 58);
+  border: 1px solid black;
+  padding: 10px;
+  z-index: 10; /* Ensure it's above other content */
+  text-align: left;
+  top: 50px;
+  right: 85px;
+}
+
+.column-options-container.visible {
+  display: block; /* Show when visible */
+}
+
+.column-options-container-dark.visible {
+  display: block; /* Show when visible */
+}
+
+/* Style for individual column option */
+.column-options-container div {
+  padding: 5px;
+}
+
+.column-options-container-dark div {
+  padding: 5px;
 }

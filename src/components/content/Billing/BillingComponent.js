@@ -6,7 +6,7 @@ import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestor
 import { db } from '../../../auth/Firebase'
 
 const BillingComponent = (props) => {
-  const {mode, contentTab, setContentTab} = props
+  const {mode, contentTab, userAccess, setContentTab} = props
 
   const [searchTerm, setSearchTerm] = useState('')
   const [sort, setSort] = useState('insuranceName')
@@ -19,6 +19,20 @@ const BillingComponent = (props) => {
   const [billingList, setBillingList] = useState([])
 
   const [viewTable, setViewTable] = useState('all')
+
+  const [viewPrefix, setViewPrefix] = useState(true)
+  const [viewInsurance, setViewInsurance] = useState(true)
+  const [viewNetwork, setViewNetwork] = useState(true)
+  const [viewFacilityCol, setViewFacilityCol] = useState(true)
+  const [viewResDays, setViewResDays] = useState(true)
+  const [viewResVisits, setViewResVisits] = useState(true)
+  const [viewDetoxDays, setViewDetoxDays] = useState(true)
+  const [viewDetoxVisits, setViewDetoxVisits] = useState(true)
+  const [viewTotalCharge, setViewTotalCharge] = useState(true)
+  const [viewTotalPaid, setViewTotalPaid] = useState(true)
+  const [viewPayout, setViewPayout] = useState(true)
+  const [viewDeciion, setViewDeciion] = useState(true)
+  const [viewAdmit, setViewAdmit] = useState(true)
 
   useEffect(() => {
     grabBilling()
@@ -107,6 +121,36 @@ const BillingComponent = (props) => {
                   clearSearch={clearSearch}
                   setSort={setSort}
                   setViewTable={setViewTable}
+
+                  viewPrefix={viewPrefix}
+                  viewInsurance={viewInsurance}
+                  viewNetwork={viewNetwork}
+                  viewFacilityCol={viewFacilityCol}
+                  viewResDays={viewResDays}
+                  viewResVisits={viewResVisits}
+                  viewDetoxDays={viewDetoxDays}
+                  viewDetoxVisits={viewDetoxVisits}
+                  viewTotalCharge={viewTotalCharge}
+                  viewTotalPaid={viewTotalPaid}
+                  viewPayout={viewPayout}
+                  viewDeciion={viewDeciion}
+                  viewAdmit={viewAdmit}
+
+                  setViewPrefix={setViewPrefix}
+                  setViewInsurance={setViewInsurance}
+                  setViewNetwork={setViewNetwork}
+                  setViewFacilityCol={setViewFacilityCol}
+                  setViewResDays={setViewResDays}
+                  setViewResVisits={setViewResVisits}
+                  setViewDetoxDays={setViewDetoxDays}
+                  setViewDetoxVisits={setViewDetoxVisits}
+                  setViewTotalCharge={setViewTotalCharge}
+                  setViewTotalPaid={setViewTotalPaid}
+                  setViewPayout={setViewPayout}
+                  setViewDeciion={setViewDeciion}
+                  setViewAdmit={setViewAdmit}
+
+                  userAccess={userAccess}
                 />
               </div>
               <div className='main-content'>
@@ -119,6 +163,22 @@ const BillingComponent = (props) => {
                   setViewTable={setViewTable}
                   mode={mode}
                   viewFacility={viewFacility}
+
+                  viewPrefix={viewPrefix}
+                  viewInsurance={viewInsurance}
+                  viewNetwork={viewNetwork}
+                  viewFacilityCol={viewFacilityCol}
+                  viewResDays={viewResDays}
+                  viewResVisits={viewResVisits}
+                  viewDetoxDays={viewDetoxDays}
+                  viewDetoxVisits={viewDetoxVisits}
+                  viewTotalCharge={viewTotalCharge}
+                  viewTotalPaid={viewTotalPaid}
+                  viewPayout={viewPayout}
+                  viewDeciion={viewDeciion}
+                  viewAdmit={viewAdmit}
+
+                  userAccess={userAccess}
                 />
               </div>
             </div>
@@ -134,6 +194,36 @@ const BillingComponent = (props) => {
                   clearSearch={clearSearch}
                   setSort={setSort}
                   setViewTable={setViewTable}
+
+                  viewPrefix={viewPrefix}
+                  viewInsurance={viewInsurance}
+                  viewNetwork={viewNetwork}
+                  viewFacilityCol={viewFacilityCol}
+                  viewResDays={viewResDays}
+                  viewResVisits={viewResVisits}
+                  viewDetoxDays={viewDetoxDays}
+                  viewDetoxVisits={viewDetoxVisits}
+                  viewTotalCharge={viewTotalCharge}
+                  viewTotalPaid={viewTotalPaid}
+                  viewPayout={viewPayout}
+                  viewDeciion={viewDeciion}
+                  viewAdmit={viewAdmit}
+
+                  setViewPrefix={setViewPrefix}
+                  setViewInsurance={setViewInsurance}
+                  setViewNetwork={setViewNetwork}
+                  setViewFacilityCol={setViewFacilityCol}
+                  setViewResDays={setViewResDays}
+                  setViewResVisits={setViewResVisits}
+                  setViewDetoxDays={setViewDetoxDays}
+                  setViewDetoxVisits={setViewDetoxVisits}
+                  setViewTotalCharge={setViewTotalCharge}
+                  setViewTotalPaid={setViewTotalPaid}
+                  setViewPayout={setViewPayout}
+                  setViewDeciion={setViewDeciion}
+                  setViewAdmit={setViewAdmit}
+
+                  userAccess={userAccess}
                 />
               </div>
               <div className='main-content'>
@@ -146,6 +236,22 @@ const BillingComponent = (props) => {
                   setViewTable={setViewTable}
                   mode={mode}
                   viewFacility={viewFacility}
+
+                  viewPrefix={viewPrefix}
+                  viewInsurance={viewInsurance}
+                  viewNetwork={viewNetwork}
+                  viewFacilityCol={viewFacilityCol}
+                  viewResDays={viewResDays}
+                  viewResVisits={viewResVisits}
+                  viewDetoxDays={viewDetoxDays}
+                  viewDetoxVisits={viewDetoxVisits}
+                  viewTotalCharge={viewTotalCharge}
+                  viewTotalPaid={viewTotalPaid}
+                  viewPayout={viewPayout}
+                  viewDeciion={viewDeciion}
+                  viewAdmit={viewAdmit}
+
+                  userAccess={userAccess}
                 />
               </div>
             </div>

@@ -1,7 +1,24 @@
 import React, { useState } from 'react'
 
 const BillingTableContentComponent = (props) => {
-  const { records, mode } = props
+  const { 
+    records,
+    mode,
+    userAccess,
+    viewPrefix,
+    viewInsurance,
+    viewNetwork,
+    viewFacilityCol,
+    viewResDays,
+    viewResVisits,
+    viewDetoxDays,
+    viewDetoxVisits,
+    viewTotalCharge,
+    viewTotalPaid,
+    viewPayout,
+    viewDeciion,
+    viewAdmit,
+  } = props
 
   const limitString = (str) => {
     if (str.length > 25) {
@@ -23,38 +40,92 @@ const BillingTableContentComponent = (props) => {
           if(mode === 'light'){
             return(
               <tr className='tr-light'>
-                <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
-                <td>{limitString(record.data.insuranceName)}</td>
-                <td>{record.data.network}</td>
-                <td>{record.data.facility}</td>
-                <td>{record.data.avgResidentialDays} DAYS</td>
-                <td>{record.data.totalResidentialPatientCount} VISITS</td>
-                <td>{record.data.avgDetoxDays} DAYS</td>
-                <td>{record.data.totalDetoxPatientCount} VISITS</td>
-                <td>{formatDollarAmount(record.data.prefixChargeAverage)}</td>
-                <td>{formatDollarAmount(record.data.prefixPaidAverage)}</td>
-                <td>{Math.round(record.data.payoutRatio * 100)}%</td>
                 {
-                  record.data.vobDecision.split(' ')[0] === 'Likely'
-                    ? <td>
-                        <p style={{fontWeight: '600', color: '#50C878'}}>{record.data.vobDecision.split(' ')[0]}</p>
-                      </td>
-                    : <td>
-                        <p style={{fontWeight: '600', color: '#e94f4e'}}>{record.data.vobDecision.split(' ')[0]}</p>
-                      </td>
+                  viewPrefix
+                    ? <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
+                    : null
                 }
                 {
-                  record.data.vobPercent >= 70
-                    ? <td>
-                        <p style={{fontWeight: 'bold', color: '#50C878'}}>{record.data.vobPercent}%</p>
-                      </td>
-                    : record.data.vobPercent >= 60
+                  viewInsurance
+                    ? <td>{limitString(record.data.insuranceName)}</td>
+                    : null
+                }
+                {
+                  viewNetwork
+                    ? <td>{record.data.network}</td>
+                    : null
+                }
+                {
+                  viewFacilityCol
+                    ? <td>{record.data.facility}</td>
+                    : null
+                }
+                {
+                  viewResDays
+                    ? <td>{record.data.avgResidentialDays} DAYS</td>
+                    : null
+                }
+                {
+                  viewResVisits
+                    ? <td>{record.data.totalResidentialPatientCount} VISITS</td>
+                    : null
+                }
+                {
+                  viewDetoxDays
+                    ? <td>{record.data.avgDetoxDays} DAYS</td>
+                    : null
+                }
+                {
+                  viewDetoxVisits
+                    ? <td>{record.data.totalDetoxPatientCount} VISITS</td>
+                    : null
+                }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? viewTotalCharge
+                      ? <td>{formatDollarAmount(record.data.prefixChargeAverage)}</td>
+                      : null
+                    : null
+                }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? viewTotalPaid
+                      ? <td>{formatDollarAmount(record.data.prefixPaidAverage)}</td>
+                      : null
+                    : null
+                }
+                {
+                  viewPayout
+                    ? <td>{Math.round(record.data.payoutRatio * 100)}%</td>
+                    : null
+                }
+                {
+                  viewDeciion
+                    ? record.data.vobDecision.split(' ')[0] === 'Likely'
                         ? <td>
-                            <p style={{fontWeight: 'bold', color: '#FDDA0D'}}>{record.data.vobPercent}%</p>
+                            <p style={{fontWeight: '600', color: '#50C878'}}>{record.data.vobDecision.split(' ')[0]}</p>
                           </td>
                         : <td>
-                            <p style={{fontWeight: 'bold', color: '#e94f4e'}}>{record.data.vobPercent}%</p>
+                            <p style={{fontWeight: '600', color: '#e94f4e'}}>{record.data.vobDecision.split(' ')[0]}</p>
                           </td>
+                    : null
+                }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? viewAdmit
+                      ? record.data.vobPercent >= 70
+                          ? <td>
+                              <p style={{fontWeight: 'bold', color: '#50C878'}}>{record.data.vobPercent}%</p>
+                            </td>
+                          : record.data.vobPercent >= 60
+                              ? <td>
+                                  <p style={{fontWeight: 'bold', color: '#FDDA0D'}}>{record.data.vobPercent}%</p>
+                                </td>
+                              : <td>
+                                  <p style={{fontWeight: 'bold', color: '#e94f4e'}}>{record.data.vobPercent}%</p>
+                                </td>
+                      : null
+                    : null
                 }
                 <td>Open</td>
               </tr>
@@ -62,38 +133,92 @@ const BillingTableContentComponent = (props) => {
           } else {
             return(
               <tr className='tr-dark'>
-                <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
-                <td>{limitString(record.data.insuranceName)}</td>
-                <td>{record.data.network}</td>
-                <td>{record.data.facility}</td>
-                <td>{record.data.avgResidentialDays} DAYS</td>
-                <td>{record.data.totalResidentialPatientCount} VISITS</td>
-                <td>{record.data.avgDetoxDays} DAYS</td>
-                <td>{record.data.totalDetoxPatientCount} VISITS</td>
-                <td>{formatDollarAmount(record.data.prefixChargeAverage)}</td>
-                <td>{formatDollarAmount(record.data.prefixPaidAverage)}</td>
-                <td>{Math.round(record.data.payoutRatio * 100)}%</td>
                 {
-                  record.data.vobDecision.split(' ')[0] === 'Likely'
-                    ? <td>
-                        <p style={{fontWeight: '600', color: '#50C878'}}>{record.data.vobDecision.split(' ')[0]}</p>
-                      </td>
-                    : <td>
-                        <p style={{fontWeight: '600', color: '#e94f4e'}}>{record.data.vobDecision.split(' ')[0]}</p>
-                      </td>
+                  viewPrefix
+                    ? <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
+                    : null
                 }
                 {
-                  record.data.vobPercent >= 70
-                    ? <td>
-                        <p style={{fontWeight: 'bold', color: '#50C878'}}>{record.data.vobPercent}%</p>
-                      </td>
-                    : record.data.vobPercent >= 60
+                  viewInsurance
+                    ? <td>{limitString(record.data.insuranceName)}</td>
+                    : null
+                }
+                {
+                  viewNetwork
+                    ? <td>{record.data.network}</td>
+                    : null
+                }
+                {
+                  viewFacilityCol
+                    ? <td>{record.data.facility}</td>
+                    : null
+                }
+                {
+                  viewResDays
+                    ? <td>{record.data.avgResidentialDays} DAYS</td>
+                    : null
+                }
+                {
+                  viewResVisits
+                    ? <td>{record.data.totalResidentialPatientCount} VISITS</td>
+                    : null
+                }
+                {
+                  viewDetoxDays
+                    ? <td>{record.data.avgDetoxDays} DAYS</td>
+                    : null
+                }
+                {
+                  viewDetoxVisits
+                    ? <td>{record.data.totalDetoxPatientCount} VISITS</td>
+                    : null
+                }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? viewTotalCharge
+                      ? <td>{formatDollarAmount(record.data.prefixChargeAverage)}</td>
+                      : null
+                    : null
+                }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? viewTotalPaid
+                      ? <td>{formatDollarAmount(record.data.prefixPaidAverage)}</td>
+                      : null
+                    : null
+                }
+                {
+                  viewPayout
+                    ? <td>{Math.round(record.data.payoutRatio * 100)}%</td>
+                    : null
+                }
+                {
+                  viewDeciion
+                    ? record.data.vobDecision.split(' ')[0] === 'Likely'
                         ? <td>
-                            <p style={{fontWeight: 'bold', color: '#FDDA0D'}}>{record.data.vobPercent}%</p>
+                            <p style={{fontWeight: '600', color: '#50C878'}}>{record.data.vobDecision.split(' ')[0]}</p>
                           </td>
                         : <td>
-                            <p style={{fontWeight: 'bold', color: '#e94f4e'}}>{record.data.vobPercent}%</p>
+                            <p style={{fontWeight: '600', color: '#e94f4e'}}>{record.data.vobDecision.split(' ')[0]}</p>
                           </td>
+                    : null
+                }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? viewAdmit
+                      ? record.data.vobPercent >= 70
+                          ? <td>
+                              <p style={{fontWeight: 'bold', color: '#50C878'}}>{record.data.vobPercent}%</p>
+                            </td>
+                          : record.data.vobPercent >= 60
+                              ? <td>
+                                  <p style={{fontWeight: 'bold', color: '#FDDA0D'}}>{record.data.vobPercent}%</p>
+                                </td>
+                              : <td>
+                                  <p style={{fontWeight: 'bold', color: '#e94f4e'}}>{record.data.vobPercent}%</p>
+                                </td>
+                      : null
+                    : null
                 }
                 <td>Open</td>
               </tr>
