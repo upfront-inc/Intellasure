@@ -3,7 +3,7 @@ import AccountTableContentComponent from './AccountTableContentComponent'
 
 const AccountTableComponent = (props) => {
   const {
-    records,
+    records, mode
   } = props
   return (
     <div className='main-content-area'>
@@ -18,7 +18,7 @@ const AccountTableComponent = (props) => {
           </tr>
         </thead>
         <tbody>
-          <AccountTableContentComponent records={records}/>         
+          <AccountTableContentComponent records={records} mode={mode}/>         
         </tbody>
       </table>
     </div>

@@ -4,7 +4,7 @@ import '../../../css/general.css'
 import { db } from '../../../auth/Firebase';
 
 const AccountTableContentComponent = (props) => {
-  const { records } = props
+  const { records, mode } = props
 
   const makeAdmin = (userId) => {
     if (window.confirm("Are you sure you want to make this user an admin?")) {
@@ -48,19 +48,29 @@ const deleteUserDocument = (userId) => {
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
                   <p>({record.data.status})</p>
                   {
-                    record.data.status === 'staff'
-                      ? <p className='hover-paragraph' onClick={() => {makeAdmin(record.data.userId)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}}>Make Admin</p>
-                      : record.data.status === 'admin'
-                          ? <p className='hover-paragraph' onClick={() => {removeAdmin(record.data.userId)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}}>Remove Admin</p>
-                          : null
+                    mode === 'light'
+                      ? record.data.status === 'staff'
+                          ? <p className='hover-paragraph' onClick={() => {makeAdmin(record.data.userId)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}}>Make Admin</p>
+                          : record.data.status === 'admin'
+                              ? <p className='hover-paragraph' onClick={() => {removeAdmin(record.data.userId)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}}>Remove Admin</p>
+                              : null
+                      : record.data.status === 'staff'
+                          ? <p className='hover-paragraph' onClick={() => {makeAdmin(record.data.userId)}} style={{marginLeft: '16px', color: 'red', textDecoration: 'underline'}}>Make Admin</p>
+                          : record.data.status === 'admin'
+                              ? <p className='hover-paragraph' onClick={() => {removeAdmin(record.data.userId)}} style={{marginLeft: '16px', color: 'red', textDecoration: 'underline'}}>Remove Admin</p>
+                              : null
                   }
                 </div>
               </td>
               <td>
                 {
-                  record.data.status === 'staff'
-                    ? <p className='hover-paragraph' onClick={() => {deleteUserDocument(record.data.userId)}} style={{color: 'blue', textDecoration: 'underline'}}>Remove User</p>
-                    : null
+                  mode === 'light'
+                    ? record.data.status === 'staff'
+                        ? <p className='hover-paragraph' onClick={() => {deleteUserDocument(record.data.userId)}} style={{color: 'blue', textDecoration: 'underline'}}>Remove User</p>
+                        : null
+                    : record.data.status === 'staff'
+                        ? <p className='hover-paragraph' onClick={() => {deleteUserDocument(record.data.userId)}} style={{color: 'red', textDecoration: 'underline'}}>Remove User</p>
+                        : null
                 }
               </td>
             </tr>

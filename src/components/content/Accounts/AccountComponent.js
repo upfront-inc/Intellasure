@@ -32,6 +32,7 @@ const AccountComponent = (props) => {
               <div className='main-content'>
                 <AccountTableComponent 
                   records={records}
+                  mode={mode}
                 />
               </div>
             </div>
@@ -39,6 +40,7 @@ const AccountComponent = (props) => {
               <div className='main-content'>
                 <AccountTableComponent 
                   records={records}
+                  mode={mode}
                 />
               </div>
             </div>

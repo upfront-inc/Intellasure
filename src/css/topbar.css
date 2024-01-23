@@ -165,6 +165,46 @@
   cursor: pointer;
 }
 
+.daily-sort-options-container {
+  display: none; 
+  position: absolute; 
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 10; 
+  top: 50px;
+  right: 8px;
+}
+
+.daily-sort-options-container-dark {
+  display: none; 
+  position: absolute; 
+  background-color: rgb(58, 58, 58);
+  border: 1px solid black;
+  padding: 10px;
+  z-index: 10; 
+  top: 50px;
+  right: 8px;
+}
+
+.daily-sort-options-container.visible {
+  display: block; 
+}
+
+.daily-sort-options-container-dark.visible {
+  display: block; 
+}
+
+.daily-sort-options-container div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.daily-sort-options-container-dark div {
+  padding: 5px;
+  cursor: pointer;
+}
+
 .facility-filter-container {
   display: none; /* Initially hidden */
   position: absolute; /* Adjust as needed based on layout */

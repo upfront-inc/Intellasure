@@ -18,6 +18,11 @@ const DailyRateComponent = (props) => {
     grabDailyRates()
   }, [])
 
+  useEffect(() => {
+    console.log(sort)
+    searchSortQuery()
+  }, [sort])
+
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value)
   }
@@ -37,6 +42,18 @@ const DailyRateComponent = (props) => {
     setActiveSearch(true)
     let queryRefDaily;
     queryRefDaily = query(collection(db, 'CurrentInsurance'), where('insurancePrefix', '==', searchTerm.toUpperCase()),orderBy(sort));
+    onSnapshot(queryRefDaily, snapshot => {
+      let billings = [];
+      snapshot.docs.forEach(doc => {
+          billings.push({data: doc.data(), id: doc.id});
+      });
+      setResults(billings)
+    });
+  }
+
+  const searchSortQuery = () => {
+    let queryRefDaily;
+    queryRefDaily = query(collection(db, 'CurrentInsurance'), orderBy(sort));
     onSnapshot(queryRefDaily, snapshot => {
       let billings = [];
       snapshot.docs.forEach(doc => {
@@ -66,6 +83,7 @@ const DailyRateComponent = (props) => {
                   activeSearch={activeSearch}
                   setActiveSearch={setActiveSearch}
                   clearSearch={clearSearch}
+                  setSort={setSort}
                 />
               </div>
               <div className='main-content'>
@@ -84,6 +102,7 @@ const DailyRateComponent = (props) => {
                   activeSearch={activeSearch}
                   setActiveSearch={setActiveSearch}
                   clearSearch={clearSearch}
+                  setSort={setSort}
                 />
               </div>
               <div className='main-content'>

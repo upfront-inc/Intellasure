@@ -32,6 +32,7 @@ const TicketComponent = (props) => {
               <div className='main-content'>
                 <TicketTableComponent 
                   records={records}
+                  mode={mode}
                 />
               </div>
             </div>
@@ -39,6 +40,7 @@ const TicketComponent = (props) => {
               <div className='main-content'>
                 <TicketTableComponent 
                   records={records}
+                  mode={mode}
                 />
               </div>
             </div>

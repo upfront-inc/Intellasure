@@ -4,6 +4,7 @@ import TicketTableContentComponent from './TicketTableContentComponent'
 const TicketTableComponent = (props) => {
   const {
     records,
+    mode
   } = props
   return (
     <div className='main-content-area'>
@@ -19,7 +20,7 @@ const TicketTableComponent = (props) => {
           </tr>
         </thead>
         <tbody>
-          <TicketTableContentComponent records={records}/>         
+          <TicketTableContentComponent records={records} mode={mode}/>         
         </tbody>
       </table>
     </div>

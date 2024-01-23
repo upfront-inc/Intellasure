@@ -10,8 +10,16 @@ const DailyTableSearchComponent = (props) => {
     mode,
     searchCurrentQuery,
     activeSearch,
-    clearSearch
+    clearSearch,
+    setSort
   } = props
+
+  const [showSortOptions, setShowSortOptions] = useState(false);
+
+  const handleSortOptionClick = (option) => {
+    setSort(option)
+    setShowSortOptions(false);
+  };
 
   return (
     <div className='tb-container'>
@@ -32,11 +40,15 @@ const DailyTableSearchComponent = (props) => {
                     : <p onClick={() => {searchCurrentQuery()}} className='search hover-paragraph'>Search</p>
                 }
               </div>
-              <div className='button-container'>
+              <div onClick={() => setShowSortOptions(!showSortOptions)}  className='button-container hover-paragraph'>
                 <FontAwesomeIcon icon={faSort} className="tb-icon-menu"/>
+                <p className='button-text'>Sort</p>
               </div>
-              <div className='button-container button-end'>
-                <FontAwesomeIcon icon={faBuilding} className="tb-icon-menu"/>
+              <div className={showSortOptions ? 'daily-sort-options-container visible' : 'daily-sort-options-container'}>
+                <div onClick={() => handleSortOptionClick('insurancePrefix')}>Prefix</div>
+                <div onClick={() => handleSortOptionClick('insuranceName')}>Insurance</div>
+                <div onClick={() => handleSortOptionClick('insuranceLoc')}>Level Of Care</div>
+                <div onClick={() => handleSortOptionClick('lastUpdate')}>Last Updated</div>
               </div>
             </div>
           : <div className='tb-menu-dark'>
@@ -50,11 +62,15 @@ const DailyTableSearchComponent = (props) => {
                 />
                 <p className='search'>Search</p>
               </div>
-              <div className='button-container'>
+              <div onClick={() => setShowSortOptions(!showSortOptions)}  className='button-container hover-paragraph'>
                 <FontAwesomeIcon icon={faSort} className="tb-icon-menu"/>
+                <p className='button-text'>Sort</p>
               </div>
-              <div className='button-container button-end'>
-                <FontAwesomeIcon icon={faBuilding} className="tb-icon-menu"/>
+              <div className={showSortOptions ? 'daily-sort-options-container-dark visible' : 'daily-sort-options-container-dark'}>
+                <div onClick={() => handleSortOptionClick('insurancePrefix')}>Prefix</div>
+                <div onClick={() => handleSortOptionClick('insuranceName')}>Insurance</div>
+                <div onClick={() => handleSortOptionClick('insuranceLoc')}>Level Of Care</div>
+                <div onClick={() => handleSortOptionClick('lastUpdate')}>Last Updated</div>
               </div>
             </div>
       }

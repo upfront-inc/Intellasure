@@ -4,7 +4,7 @@ import '../../../css/general.css'
 import { db } from '../../../auth/Firebase';
 
 const TicketTableContentComponent = (props) => {
-  const { records } = props
+  const { records,mode } = props
 
   const [viewDetails, setViewDetails] = useState(null)
 
@@ -31,7 +31,9 @@ const TicketTableContentComponent = (props) => {
                     ({record.data.status})
                     {
                       record.data.status === 'active'
-                        ? <p className='hover-paragraph'  onClick={() => {updateTicketStatus(record.id)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}} >Close Ticket</p>
+                        ? mode === 'light'
+                            ? <p className='hover-paragraph width: 17px'  onClick={() => {updateTicketStatus(record.id)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}} >Close Ticket</p>
+                            : <p className='hover-paragraph'  onClick={() => {updateTicketStatus(record.id)}} style={{marginLeft: '16px', color: 'red', textDecoration: 'underline'}} >Close Ticket</p>
                         : null
                     }
                   </div>
@@ -39,9 +41,13 @@ const TicketTableContentComponent = (props) => {
                 <td>
                   <div>
                     {
-                      viewDetails === record.id
-                        ? <p className='hover-paragraph'  onClick={() => {setViewDetails(null)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}} >Close</p>
-                        : <p className='hover-paragraph'  onClick={() => {setViewDetails(record.id)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}} >Open</p>
+                      mode === 'light'
+                        ? viewDetails === record.id
+                            ? <p className='hover-paragraph'  onClick={() => {setViewDetails(null)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}} >Close</p>
+                            : <p className='hover-paragraph'  onClick={() => {setViewDetails(record.id)}} style={{marginLeft: '16px', color: 'blue', textDecoration: 'underline'}} >Open</p>
+                        : viewDetails === record.id
+                            ? <p className='hover-paragraph'  onClick={() => {setViewDetails(null)}} style={{marginLeft: '16px', color: 'red', textDecoration: 'underline'}} >Close</p>
+                            : <p className='hover-paragraph'  onClick={() => {setViewDetails(record.id)}} style={{marginLeft: '16px', color: 'red', textDecoration: 'underline'}} >Open</p>
                     }
                   </div>
                 </td>
