@@ -65,9 +65,20 @@
   color: #009ea1;
 }
 
+.search-red {
+  color: red;
+}
+
 .tb-icon-menu {
   font-size: 18px;
   color: white;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.tb-icon-menu-clear {
+  font-size: 20px;
+  color: #009ea1;
   padding-left: 8px;
   padding-right: 8px;
 }

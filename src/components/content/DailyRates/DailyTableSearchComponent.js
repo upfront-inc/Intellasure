@@ -7,7 +7,10 @@ const DailyTableSearchComponent = (props) => {
   const {
     searchTerm,
     handleSearchChange,
-    mode
+    mode,
+    searchCurrentQuery,
+    activeSearch,
+    clearSearch
   } = props
 
   return (
@@ -23,7 +26,11 @@ const DailyTableSearchComponent = (props) => {
                   value={searchTerm}
                   onChange={handleSearchChange}
                 />
-                <p className='search'>Search</p>
+                {
+                  activeSearch
+                    ? <p onClick={() => {clearSearch()}} className='search-red hover-paragraph'>Clear</p>
+                    : <p onClick={() => {searchCurrentQuery()}} className='search hover-paragraph'>Search</p>
+                }
               </div>
               <div className='button-container'>
                 <FontAwesomeIcon icon={faSort} className="tb-icon-menu"/>

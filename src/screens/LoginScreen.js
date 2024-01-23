@@ -7,7 +7,7 @@ import ForgotPasswordComponent from '../components/ForgotPasswordComponent'
 
 const LoginScreen = (props) => {
     const {
-        setCurrentView
+      setCurrentView
     } = props
 
     const [currentTab, setCurrentTab] = useState('Login')

@@ -29,10 +29,6 @@ const LoginComponent = (props) => {
       setLoginPassword(e.target.value);
   }
 
-  const handleResetEmailChange = (e) => {
-      setResetEmail(e.target.value);
-  }
-
   const grabUserInfo = (userId) => {
     const userRef = doc(db, "users", userId);
 

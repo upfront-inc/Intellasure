@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import BilingTableComponent from './BilingTableComponent'
 import BillingSearchComponent from './BillingSearchComponent'
 import '../../../css/billing.css'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../../../auth/Firebase'
 
 const BillingComponent = (props) => {
-  const {mode} = props
+  const {mode, contentTab, setContentTab} = props
 
   const [searchTerm, setSearchTerm] = useState('')
+  const [sort, setSort] = useState('insuranceName')
+  const [activeSearch, setActiveSearch] = useState(false)
 
   const [affinityRecords, setAffinityRecords] = useState([])
   const [beacsideRecords, setBeachsideRecords] = useState([])
@@ -52,6 +54,25 @@ const BillingComponent = (props) => {
     });
   }
 
+  const searchCurrentQuery = () => {
+    setActiveSearch(true)
+    let queryRefBilling;
+    queryRefBilling = query(collection(db, 'BillingDetailsPrefixVOB'), where('prefix', '==', searchTerm.toUpperCase()),orderBy(sort));
+    onSnapshot(queryRefBilling, snapshot => {
+      let billings = [];
+      snapshot.docs.forEach(doc => {
+          billings.push({data: doc.data(), id: doc.id});
+      });
+      setBillingList(billings)
+    });
+  }
+
+  const clearSearch = () => {
+    grabBilling()
+    setActiveSearch(false)
+    setSearchTerm('')
+  }
+
   return (
     <>
       {
@@ -62,6 +83,10 @@ const BillingComponent = (props) => {
                   searchTerm={searchTerm}
                   handleSearchChange={handleSearchChange}
                   mode={mode}
+                  searchCurrentQuery={searchCurrentQuery}
+                  activeSearch={activeSearch}
+                  setActiveSearch={setActiveSearch}
+                  clearSearch={clearSearch}
                 />
               </div>
               <div className='main-content'>
@@ -81,6 +106,11 @@ const BillingComponent = (props) => {
                 <BillingSearchComponent 
                   searchTerm={searchTerm}
                   handleSearchChange={handleSearchChange}
+                  mode={mode}
+                  searchCurrentQuery={searchCurrentQuery}
+                  activeSearch={activeSearch}
+                  setActiveSearch={setActiveSearch}
+                  clearSearch={clearSearch}
                 />
               </div>
               <div className='main-content'>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../../../css/billing.css'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../../../auth/Firebase'
 import DailyRateTableComponent from './DailyRateTableComponent'
 import DailyTableSearchComponent from './DailyTableSearchComponent'
@@ -9,6 +9,8 @@ const DailyRateComponent = (props) => {
   const {mode} = props
 
   const [searchTerm, setSearchTerm] = useState('')
+  const [sort, setSort] = useState('insuranceName')
+  const [activeSearch, setActiveSearch] = useState(false)
 
   const [resulls, setResults] = useState([])
 
@@ -31,7 +33,24 @@ const DailyRateComponent = (props) => {
     });
   }
 
-  console.log('dailt rate')
+  const searchCurrentQuery = () => {
+    setActiveSearch(true)
+    let queryRefDaily;
+    queryRefDaily = query(collection(db, 'CurrentInsurance'), where('insurancePrefix', '==', searchTerm.toUpperCase()),orderBy(sort));
+    onSnapshot(queryRefDaily, snapshot => {
+      let billings = [];
+      snapshot.docs.forEach(doc => {
+          billings.push({data: doc.data(), id: doc.id});
+      });
+      setResults(billings)
+    });
+  }
+
+  const clearSearch = () => {
+    grabDailyRates()
+    setActiveSearch(false)
+    setSearchTerm('')
+  }
 
   return (
     <>
@@ -43,6 +62,10 @@ const DailyRateComponent = (props) => {
                   searchTerm={searchTerm}
                   handleSearchChange={handleSearchChange}
                   mode={mode}
+                  searchCurrentQuery={searchCurrentQuery}
+                  activeSearch={activeSearch}
+                  setActiveSearch={setActiveSearch}
+                  clearSearch={clearSearch}
                 />
               </div>
               <div className='main-content'>
@@ -57,6 +80,10 @@ const DailyRateComponent = (props) => {
                   searchTerm={searchTerm}
                   handleSearchChange={handleSearchChange}
                   mode={mode}
+                  searchCurrentQuery={searchCurrentQuery}
+                  activeSearch={activeSearch}
+                  setActiveSearch={setActiveSearch}
+                  clearSearch={clearSearch}
                 />
               </div>
               <div className='main-content'>

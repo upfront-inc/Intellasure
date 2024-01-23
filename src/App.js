@@ -18,7 +18,6 @@ function App() {
       if (user) {
         setCurrentView('content');
         grabUserInfo();
-        // grabInformation();
       } else {
         setCurrentView('login');
       }

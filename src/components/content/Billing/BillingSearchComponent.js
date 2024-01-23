@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import '../../../css/topbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBuilding, faFilter, faSearch, faSort } from '@fortawesome/free-solid-svg-icons'
+import { faBackspace, faBuilding, faCancel, faFilter, faSearch, faSort } from '@fortawesome/free-solid-svg-icons'
 
 const BillingSearchComponent = (props) => {
   const {
     searchTerm,
     handleSearchChange,
-    mode
+    mode,
+    searchCurrentQuery,
+    activeSearch,
+    clearSearch
   } = props
 
   return (
@@ -23,7 +26,11 @@ const BillingSearchComponent = (props) => {
                   value={searchTerm}
                   onChange={handleSearchChange}
                 />
-                <p className='search'>Search</p>
+                {
+                  activeSearch
+                    ? <p onClick={() => {clearSearch()}} className='search-red hover-paragraph'>Clear</p>
+                    : <p onClick={() => {searchCurrentQuery()}} className='search hover-paragraph'>Search</p>
+                }
               </div>
               <div className='button-container'>
                 <FontAwesomeIcon icon={faSort} className="tb-icon-menu"/>
@@ -44,7 +51,7 @@ const BillingSearchComponent = (props) => {
                   value={searchTerm}
                   onChange={handleSearchChange}
                 />
-                <p className='search'>Search</p>
+                <p onClick={() => {searchCurrentQuery()}} className='search'>Search</p>
               </div>
               <div className='button-container'>
                 <FontAwesomeIcon icon={faSort} className="tb-icon-menu"/>
