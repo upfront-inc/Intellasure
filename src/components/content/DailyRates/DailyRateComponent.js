@@ -6,6 +6,7 @@ import DailyRateTableComponent from './DailyRateTableComponent'
 import DailyTableSearchComponent from './DailyTableSearchComponent'
 
 const DailyRateComponent = (props) => {
+  const {mode} = props
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -33,19 +34,39 @@ const DailyRateComponent = (props) => {
   console.log('dailt rate')
 
   return (
-    <div className='main-billing-content'>
-      <div className='top-bar'>  
-        <DailyTableSearchComponent 
-          searchTerm={searchTerm}
-          handleSearchChange={handleSearchChange}
-        />
-      </div>
-      <div className='main-content'>
-        <DailyRateTableComponent 
-          records={resulls}
-        />
-      </div>
-    </div>
+    <>
+      {
+        mode === 'light'
+          ? <div className='main-billing-content'>
+              <div className='top-bar'>  
+                <DailyTableSearchComponent 
+                  searchTerm={searchTerm}
+                  handleSearchChange={handleSearchChange}
+                  mode={mode}
+                />
+              </div>
+              <div className='main-content'>
+                <DailyRateTableComponent 
+                  records={resulls}
+                />
+              </div>
+            </div>
+          : <div className='main-billing-content-dark'>
+              <div className='top-bar'>  
+                <DailyTableSearchComponent 
+                  searchTerm={searchTerm}
+                  handleSearchChange={handleSearchChange}
+                  mode={mode}
+                />
+              </div>
+              <div className='main-content'>
+                <DailyRateTableComponent 
+                  records={resulls}
+                />
+              </div>
+            </div>
+      } 
+    </>
   )
 }
 

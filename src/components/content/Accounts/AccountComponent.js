@@ -5,6 +5,7 @@ import { db } from '../../../auth/Firebase'
 import AccountTableComponent from './AccountTableComponent'
 
 const AccountComponent = (props) => {
+  const {mode} = props
 
   const [records, setRecords] = useState([])
 
@@ -24,13 +25,25 @@ const AccountComponent = (props) => {
   }
 
   return (
-    <div className='main-billing-content'>
-      <div className='main-content'>
-        <AccountTableComponent 
-          records={records}
-        />
-      </div>
-    </div>
+    <>
+      {
+        mode === 'light'
+          ? <div className='main-billing-content'>
+              <div className='main-content'>
+                <AccountTableComponent 
+                  records={records}
+                />
+              </div>
+            </div>
+          : <div className='main-billing-content-dark'>
+              <div className='main-content'>
+                <AccountTableComponent 
+                  records={records}
+                />
+              </div>
+            </div>
+      }
+    </>
   )
 }
 

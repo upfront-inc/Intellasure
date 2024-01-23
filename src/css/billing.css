@@ -2,6 +2,14 @@
   display: flex; 
   flex-direction: column; 
   height: 100vh;
+  color: black;
+}
+
+.main-billing-content-dark {
+  display: flex; 
+  flex-direction: column; 
+  height: 100vh;
+  color: white;
 }
 
 .top-bar {
@@ -45,6 +53,14 @@
   color: white;
   font-weight: 'bold';
   font-size: 16px;
+}
+
+.tr-light {
+  color: white;
+}
+
+.tr-light {
+  color: black;
 }
 
 .table-container td {

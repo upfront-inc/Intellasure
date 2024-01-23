@@ -9,6 +9,7 @@ const BilingTableComponent = (props) => {
     billingList,
     viewTable,
     setViewTable,
+    mode
   } = props
   return (
     <div className='main-content-area'>
@@ -34,13 +35,13 @@ const BilingTableComponent = (props) => {
         <tbody>
           {
             viewTable === 'all'
-              ? <BillingTableContentComponent records={billingList}/>
+              ? <BillingTableContentComponent mode={mode} records={billingList}/>
               : viewTable === 'affinity'
-                  ? <BillingTableContentComponent records={affinityRecords}/>
+                  ? <BillingTableContentComponent mode={mode} records={affinityRecords}/>
                   : viewTable === 'beachsie'
-                      ? <BillingTableContentComponent records={beacsideRecords}/>
+                      ? <BillingTableContentComponent mode={mode} records={beacsideRecords}/>
                       : viewTable === 'axis'
-                          ? <BillingTableContentComponent records={axisRecords}/>
+                          ? <BillingTableContentComponent mode={mode} records={axisRecords}/>
                           : null
           }
         </tbody>

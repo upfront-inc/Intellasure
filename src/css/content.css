@@ -1,20 +1,44 @@
-.content-container {
+.content-container-dark {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: row;
+  background-color: #111111;
 }
 
-.sidebar-container {
+.content-container-light {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+
+.sidebar-container-light {
   width: 260px;
   height: 100vh;
   background-color: #e8e8e8;
 }
 
-.sidebar-container-half {
+.sidebar-container-half-light {
   width: 60px;
   height: 100vh;
   background-color: #e8e8e8;
+  color: black;
+}
+
+.sidebar-container-dark {
+  width: 260px;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.sidebar-container-half-dark {
+  width: 60px;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: white;
 }
 
 .content {

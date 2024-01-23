@@ -6,6 +6,7 @@ import { collection, onSnapshot } from 'firebase/firestore'
 import { db } from '../../../auth/Firebase'
 
 const BillingComponent = (props) => {
+  const {mode} = props
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -52,24 +53,50 @@ const BillingComponent = (props) => {
   }
 
   return (
-    <div className='main-billing-content'>
-      <div className='top-bar'>  
-        <BillingSearchComponent 
-          searchTerm={searchTerm}
-          handleSearchChange={handleSearchChange}
-        />
-      </div>
-      <div className='main-content'>
-        <BilingTableComponent 
-          affinityRecords={affinityRecords}
-          beacsideRecords={beacsideRecords}
-          axisRecords={axisRecords}
-          billingList={billingList}
-          viewTable={viewTable}
-          setViewTable={setViewTable}
-        />
-      </div>
-    </div>
+    <>
+      {
+        mode == 'light'
+          ? <div className='main-billing-content'>
+              <div className='top-bar'>  
+                <BillingSearchComponent 
+                  searchTerm={searchTerm}
+                  handleSearchChange={handleSearchChange}
+                  mode={mode}
+                />
+              </div>
+              <div className='main-content'>
+                <BilingTableComponent 
+                  affinityRecords={affinityRecords}
+                  beacsideRecords={beacsideRecords}
+                  axisRecords={axisRecords}
+                  billingList={billingList}
+                  viewTable={viewTable}
+                  setViewTable={setViewTable}
+                  mode={mode}
+                />
+              </div>
+            </div>
+          : <div className='main-billing-content-dark'>
+              <div className='top-bar'>  
+                <BillingSearchComponent 
+                  searchTerm={searchTerm}
+                  handleSearchChange={handleSearchChange}
+                />
+              </div>
+              <div className='main-content'>
+                <BilingTableComponent 
+                  affinityRecords={affinityRecords}
+                  beacsideRecords={beacsideRecords}
+                  axisRecords={axisRecords}
+                  billingList={billingList}
+                  viewTable={viewTable}
+                  setViewTable={setViewTable}
+                  mode={mode}
+                />
+              </div>
+            </div>
+      }
+    </>
   )
 }
 
