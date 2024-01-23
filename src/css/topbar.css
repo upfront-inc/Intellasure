@@ -72,8 +72,7 @@
 .tb-icon-menu {
   font-size: 18px;
   color: white;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-right: 6px;
 }
 
 .tb-icon-menu-clear {
@@ -117,6 +116,92 @@
   background-color: #009ea1;
 }
 
+.button-text {
+  color: white;
+  font-weight: bold;
+}
+
 .button-end {
   margin-right: 8px;
+}
+
+.sort-options-container {
+  display: none; 
+  position: absolute; 
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 10; 
+  top: 50px;
+  right: 154px;
+}
+
+.sort-options-container-dark {
+  display: none; 
+  position: absolute; 
+  background-color: #292929;
+  border: 1px solid black;
+  padding: 10px;
+  z-index: 10; 
+  top: 50px;
+  right: 154px;
+}
+
+.sort-options-container.visible {
+  display: block; 
+}
+
+.sort-options-container-dark.visible {
+  display: block; 
+}
+
+.sort-options-container div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.sort-options-container-dark div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.facility-filter-container {
+  display: none; /* Initially hidden */
+  position: absolute; /* Adjust as needed based on layout */
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 10;  
+  top: 50px;
+  right: 12px;
+}
+
+.facility-filter-container-dark {
+  display: none; /* Initially hidden */
+  position: absolute; /* Adjust as needed based on layout */
+  background-color: #292929;
+  border: 1px solid black;
+  padding: 10px;
+  z-index: 10;  
+  top: 50px;
+  right: 12px;
+}
+
+.facility-filter-container.visible {
+  display: block; /* Show when visible */
+}
+
+.facility-filter-container-dark.visible {
+  display: block; /* Show when visible */
+}
+
+/* Style for individual facility filter options */
+.facility-filter-container div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.facility-filter-container-dark div {
+  padding: 5px;
+  cursor: pointer;
 }

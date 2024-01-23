@@ -11,6 +11,7 @@ const BillingComponent = (props) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [sort, setSort] = useState('insuranceName')
   const [activeSearch, setActiveSearch] = useState(false)
+  const [viewFacility, setViewFacility] = useState('all')
 
   const [affinityRecords, setAffinityRecords] = useState([])
   const [beacsideRecords, setBeachsideRecords] = useState([])
@@ -22,6 +23,11 @@ const BillingComponent = (props) => {
   useEffect(() => {
     grabBilling()
   }, [])
+
+  useEffect(() => {
+    console.log(sort)
+    searchSortQuery()
+  }, [sort])
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value)
@@ -67,6 +73,18 @@ const BillingComponent = (props) => {
     });
   }
 
+  const searchSortQuery = () => {
+    let queryRefBilling;
+    queryRefBilling = query(collection(db, 'BillingDetailsPrefixVOB'),orderBy(sort));
+    onSnapshot(queryRefBilling, snapshot => {
+      let billings = [];
+      snapshot.docs.forEach(doc => {
+          billings.push({data: doc.data(), id: doc.id});
+      });
+      setBillingList(billings)
+    });
+  }
+
   const clearSearch = () => {
     grabBilling()
     setActiveSearch(false)
@@ -87,6 +105,8 @@ const BillingComponent = (props) => {
                   activeSearch={activeSearch}
                   setActiveSearch={setActiveSearch}
                   clearSearch={clearSearch}
+                  setSort={setSort}
+                  setViewTable={setViewTable}
                 />
               </div>
               <div className='main-content'>
@@ -98,6 +118,7 @@ const BillingComponent = (props) => {
                   viewTable={viewTable}
                   setViewTable={setViewTable}
                   mode={mode}
+                  viewFacility={viewFacility}
                 />
               </div>
             </div>
@@ -111,6 +132,8 @@ const BillingComponent = (props) => {
                   activeSearch={activeSearch}
                   setActiveSearch={setActiveSearch}
                   clearSearch={clearSearch}
+                  setSort={setSort}
+                  setViewTable={setViewTable}
                 />
               </div>
               <div className='main-content'>
@@ -122,6 +145,7 @@ const BillingComponent = (props) => {
                   viewTable={viewTable}
                   setViewTable={setViewTable}
                   mode={mode}
+                  viewFacility={viewFacility}
                 />
               </div>
             </div>
