@@ -2,13 +2,15 @@
   display: flex; 
   flex-direction: column; 
   height: 100vh;
+  width: '100%';
   color: black;
 }
 
 .main-billing-content-dark {
   display: flex; 
-  flex-direction: column; 
-  height: 100vh;
+  flex-direction: column;
+  height: 100vh; 
+  width: '100%';
   color: white;
 }
 
@@ -26,7 +28,12 @@
   align-items: center;
 }
 
-.main-content-area {
+.main-content-area-container {
+  display: 'flex';
+  flex-direction: 'column';
+}
+
+.main-content-area-full {
   width: 100%;
   height: 98%;
   border-radius: 10px;
@@ -35,14 +42,48 @@
   margin-right: 12px;
 }
 
-.table-container {
+.main-content-area-split-full {
+  width: 100%;
+  height: 98%;
+  overflow: scroll; 
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.main-content-area-split-top {
+  width: 99%;
+  height: 75%;
+  border-radius: 10px;
+  overflow: scroll; 
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: 18px;
+}
+
+.main-content-area-split-bottom {
+  width: 99%;
+  height: 25%;
+  border-radius: 10px;
+  overflow: scroll; 
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.table-container-light {
   width: 100%;
   max-height: 100%;
   border-collapse: collapse;
   table-layout: auto;
 }
 
-.table-container th {
+.table-container-dark {
+  width: 100%;
+  max-height: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.table-container-light th {
   position: sticky;
   top: 0;
   background-color: #202020;
@@ -55,20 +96,35 @@
   font-size: 16px;
 }
 
-.tr-light {
-  color: white;
-}
-
-.tr-light {
+.table-container-dark th {
+  position: sticky;
+  top: 0;
+  background-color: #202020;
   color: black;
+  border: none;
+  text-align: center;
+  padding: 24px 8px;
+  color: white;
+  font-weight: 'bold';
+  font-size: 16px;
 }
 
-.table-container td {
+.table-container-light td {
   border: none;
   text-align: center;
   font-weight: 500;
   padding: 24px 8px;
   font-size: 14px;
   border-bottom: 2px solid #e3e3e3;
+  /* 16px vertical padding */
+}
+
+.table-container-dark td {
+  border: none;
+  text-align: center;
+  font-weight: 500;
+  padding: 24px 8px;
+  font-size: 14px;
+  border-bottom: 2px solid black;
   /* 16px vertical padding */
 }

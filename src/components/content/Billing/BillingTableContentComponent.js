@@ -18,6 +18,10 @@ const BillingTableContentComponent = (props) => {
     viewPayout,
     viewDeciion,
     viewAdmit,
+    showSubTable,
+    handleCloseSubRecords,
+    handleShowSubRecords,
+    selectedRow,
   } = props
 
   const limitString = (str) => {
@@ -36,7 +40,7 @@ const BillingTableContentComponent = (props) => {
   return (
     <>
       {
-        records.map((record) => {
+        records.map((record, index) => {
           if(mode === 'light'){
             return(
               <tr className='tr-light'>
@@ -127,7 +131,13 @@ const BillingTableContentComponent = (props) => {
                       : null
                     : null
                 }
-                <td>Open</td>
+                {
+                    index === selectedRow
+                      ? showSubTable
+                          ? <td className='hover-paragraph' onClick={() => {handleCloseSubRecords()}}><p style={{color: 'blue'}}>Close</p></td>
+                          : <td className='hover-paragraph' onClick={() => {handleShowSubRecords(record, index)}}><p style={{color: 'blue'}}>Open</p></td>
+                      : <td className='hover-paragraph' onClick={() => {handleShowSubRecords(record, index)}}><p style={{color: 'blue'}}>Open</p></td>
+                }
               </tr>
             )
           } else {
@@ -220,7 +230,13 @@ const BillingTableContentComponent = (props) => {
                       : null
                     : null
                 }
-                <td>Open</td>
+                {
+                    index === selectedRow
+                      ? showSubTable
+                          ? <td className='hover-paragraph' onClick={() => {handleCloseSubRecords()}}><p style={{color: 'red'}}>Close</p></td>
+                          : <td className='hover-paragraph' onClick={() => {handleShowSubRecords(record, index)}}><p style={{color: 'red'}}>Open</p></td>
+                      : <td className='hover-paragraph' onClick={() => {handleShowSubRecords(record, index)}}><p style={{color: 'red'}}>Open</p></td>
+                }
               </tr>
             )
           }

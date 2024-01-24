@@ -13,7 +13,11 @@ const TicketTableContentComponent = (props) => {
     updateDoc(userRef, { status: 'closed' })
         .then(() => {})
         .catch((error) => console.error("Error updating user:", error));
-}
+  }
+
+  const displayAccounts = () => {
+
+  }
 
   return (
     <>
