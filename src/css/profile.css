@@ -7,7 +7,7 @@
 }
 
 .panel-component {
-  width: 25%;
+  width: 350px;
   height: 100%;
   background-color: #f7f7f7;
   display: flex;
@@ -18,7 +18,7 @@
 }
 
 .panel-component-dark {
-  width: 25%;
+  width: 350px;
   height: 100%;
   background-color: #1e1e1e;
   display: flex;
@@ -131,4 +131,90 @@
   padding-left: 4px;
   font-size: 16px;
   border-bottom: 2px solid #009ea1;
+}
+
+.section-header-info {
+  padding-top: 8px;
+  padding-bottom: 12px;
+}
+
+.section-header-info-dark {
+  padding-top: 8px;
+  padding-bottom: 12px;
+}
+
+.section-header {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-top: 2px solid lightgrey;
+  border-bottom: 2px solid lightgrey;
+}
+
+.section-header-dark {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-top: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.subsection-profile {
+  width: '100%';
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.subsection-profile-last {
+  width: '100%';
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.profile-input {
+  width: 200px;
+  border: 0;
+  font-size: 14px;
+  padding-top: 4px;
+  padding-left: 4px;
+  font-size: 16px;
+  border-bottom: 2px solid #009ea1;
+}
+
+.profile-input-dark {
+  width: 200px;
+  border: 0;
+  font-size: 14px;
+  padding-top: 4px;
+  padding-left: 4px;
+  font-size: 16px;
+  background-color: rgb(53, 53, 53);
+  color: white;
+  border-bottom: 2px solid #009ea1;
+}
+
+.user-info {
+  font-size: 14px;
+}
+
+.reset-password-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #009ea1;
+  border-radius: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 16px;
+  color: white;
+}
+
+.reset-password-text {
+  font-weight: bold;
 }

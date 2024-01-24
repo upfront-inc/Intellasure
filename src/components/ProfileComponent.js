@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react'
 import '../css/profile.css'
 import { auth, db } from '../auth/Firebase'
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
+import { sendPasswordResetEmail } from 'firebase/auth'
 
 const ProfileComponent = (props) => {
   const {mode, setMode} = props
 
   const [user, setUser] = useState(null)
+
+  const [editName, setEditName] = useState('')
+
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [verifyPassword, setVerifyPassword] = useState('')
 
   useEffect(() => {
       getCompanyUsers()
@@ -27,6 +34,28 @@ const ProfileComponent = (props) => {
     mode === 'light'
       ? setMode('dark')
       : setMode('light')
+  }
+
+  const handleOldPasswordChange = (e) => {
+    setOldPassword(e.target.value);
+  }
+
+  const handleNewPasswordChange = (e) => {
+    setNewPassword(e.target.value)
+  }
+
+  const handleVerifyPasswordChange = (e) => {
+    setVerifyPassword(e.target.value);
+  }
+
+  const resetUsersPassword = () => {
+    sendPasswordResetEmail(auth, auth.currentUser.email)
+      .then(() => {
+        alert("Password reset email sent successfully");
+      })
+      .catch((error) => {
+        console.error("Error sending password reset email: ", error);
+      });
   }
 
   return (
@@ -50,8 +79,23 @@ const ProfileComponent = (props) => {
                           </div>
                         </div>
                       </div>
-                      <div>
-                        <p className='userEmail'>{user.data.email}</p>
+                      <div className='section-header'>
+                        <p>Profile Information: </p>
+                      </div>
+                      <div className='subsection-profile'>
+                        <p className='user-info'>Name: </p>
+                        <p className='user-info'>{user.data.name}</p>
+                      </div>
+                      <div className='subsection-profile'>
+                        <p className='user-info'>Email: </p>
+                        <p className='user-info'>{user.data.email}</p>
+                      </div>
+                      <div className='subsection-profile-last'>
+                        <p className='user-info'>Company: </p>
+                        <p className='user-info'>{user.data.company}</p>
+                      </div>
+                      <div onClick={() => {resetUsersPassword()}} className='reset-password-container hover-paragraph'>
+                        <p className='reset-password-text'>Reset Password</p>
                       </div>
                     </div>
               }
@@ -73,8 +117,23 @@ const ProfileComponent = (props) => {
                           </div>
                         </div>
                       </div>
-                      <div>
-                        <p className='userEmail'>{user.data.email}</p>
+                      <div className='section-header-dark'>
+                        <p>Profile Information: </p>
+                      </div>
+                      <div className='subsection-profile'>
+                        <p className='user-info'>Name: </p>
+                        <p className='user-info'>{user.data.name}</p>
+                      </div>
+                      <div className='subsection-profile'>
+                        <p className='user-info'>Email: </p>
+                        <p className='user-info'>{user.data.email}</p>
+                      </div>
+                      <div className='subsection-profile-last'>
+                        <p className='user-info'>Company: </p>
+                        <p className='user-info'>{user.data.company}</p>
+                      </div>
+                      <div onClick={() => {resetUsersPassword()}} className='reset-password-container hover-paragraph'>
+                        <p className='reset-password-text'>Reset Password</p>
                       </div>
                     </div>
               }

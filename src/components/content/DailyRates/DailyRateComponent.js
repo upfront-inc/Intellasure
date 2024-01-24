@@ -89,6 +89,7 @@ const DailyRateComponent = (props) => {
               <div className='main-content'>
                 <DailyRateTableComponent 
                   records={resulls}
+                  mode={mode}
                 />
               </div>
             </div>
@@ -108,6 +109,7 @@ const DailyRateComponent = (props) => {
               <div className='main-content'>
                 <DailyRateTableComponent 
                   records={resulls}
+                  mode={mode}
                 />
               </div>
             </div>

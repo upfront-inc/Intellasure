@@ -45,7 +45,6 @@
 .main-content-area-split-full {
   width: 100%;
   height: 98%;
-  overflow: scroll; 
   margin-left: 12px;
   margin-right: 12px;
 }
@@ -62,7 +61,7 @@
 
 .main-content-area-split-bottom {
   width: 99%;
-  height: 25%;
+  height: 23%;
   border-radius: 10px;
   overflow: scroll; 
   margin-left: 12px;
@@ -72,6 +71,7 @@
 .table-container-light {
   width: 100%;
   max-height: 100%;
+  overflow: scroll; 
   border-collapse: collapse;
   table-layout: auto;
 }
@@ -115,7 +115,7 @@
   font-weight: 500;
   padding: 24px 8px;
   font-size: 14px;
-  border-bottom: 2px solid #e3e3e3;
+  border-bottom: 2px solid #f3f3f3;
   /* 16px vertical padding */
 }
 
