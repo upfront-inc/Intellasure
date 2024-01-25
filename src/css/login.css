@@ -109,6 +109,7 @@
   padding-left: 4px;
   font-size: 16px;
   border-bottom: 2px solid #009ea1;
+  background-color: rgb(225, 225, 225, .1);
 }
 
 .buttons-container {

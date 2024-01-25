@@ -158,7 +158,7 @@ return (
           />
         </div>
       </div>
-      <div className='input-container'>
+      <div className='input-container' style={{marginBottom: '16px'}}>
         <div className='user-input-container'>
           <FontAwesomeIcon icon={faLock} className="custom-icon-size"/>
           <input 
@@ -168,9 +168,6 @@ return (
             value={signupVerify}
             onChange={handleSignupVerifyChange} 
           />
-        </div>
-        <div onClick={() => {setCurrentTab('Reset')}} className='forgot-password-button'>
-          <p className='forgot-password-text'>Forgot Password</p>
         </div>
       </div>
       <div className='buttons-container'>

@@ -73,4 +73,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 <!-- 
   npm install -g serve
   serve -s build
+  http://192.168.254.226:60839 
  -->
