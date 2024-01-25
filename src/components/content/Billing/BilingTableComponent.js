@@ -46,11 +46,12 @@ const BilingTableComponent = (props) => {
   const handleCloseSubRecords = () => {
     console.log('close table')
     setShowSubTable(false)
+    setSelectedRow(null)
     setSubRecords([]);
 };
 
   const grabAssociatedRecords = (customer) => {
-    const colRef = collection(db, 'BillingDetailsInsurancePolicy');
+    const colRef = collection(db, 'BillingDetailsInsurancePolicyDup');
     const q = query(colRef, where('insuranceName', '==', customer.data.insuranceName), where('prefix', '==', customer.data.prefix));
     onSnapshot(q, snapshot => {
       let results = [];

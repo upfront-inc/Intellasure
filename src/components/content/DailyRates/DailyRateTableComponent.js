@@ -6,6 +6,7 @@ const DailyRateTableComponent = (props) => {
     records,
     mode
   } = props
+  
   return (
     <>
       {

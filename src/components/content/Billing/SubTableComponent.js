@@ -22,6 +22,15 @@ const SubTableComponent = (props) => {
     return num.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   }
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed in JavaScript
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+  
+    return `${month}/${day}/${year}`;
+  }
+
   return (
     <div className='main-content-area-split-bottom'>
       <table className='table-container-dark'>
@@ -46,6 +55,7 @@ const SubTableComponent = (props) => {
                 : null
             }
             <th>Payout %</th>
+            <th>Last Updated</th>
           </tr>
         </thead>
         <tbody>
@@ -72,6 +82,7 @@ const SubTableComponent = (props) => {
                       : null
                   }
                   <td style={{fontWeight: 'bold'}}>{Math.round(record.data.payoutRatio * 100)}%</td>
+                  <td style={{fontWeight: 'bold'}}>{formatDate(record.data.dayOut)}</td>
                 </tr>
               )
             })
