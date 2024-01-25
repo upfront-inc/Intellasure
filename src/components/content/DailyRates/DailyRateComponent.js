@@ -43,11 +43,15 @@ const DailyRateComponent = (props) => {
     let queryRefDaily;
     queryRefDaily = query(collection(db, 'CurrentInsurance'), where('insurancePrefix', '==', searchTerm.toUpperCase()),orderBy(sort));
     onSnapshot(queryRefDaily, snapshot => {
-      let billings = [];
-      snapshot.docs.forEach(doc => {
-          billings.push({data: doc.data(), id: doc.id});
-      });
-      setResults(billings)
+      if(snapshot.docs.length === 0){
+        alert(`No records found with prefix ${searchTerm.toUpperCase()}`)
+      } else {
+        let billings = [];
+        snapshot.docs.forEach(doc => {
+            billings.push({data: doc.data(), id: doc.id});
+        });
+        setResults(billings)
+        }
     });
   }
 

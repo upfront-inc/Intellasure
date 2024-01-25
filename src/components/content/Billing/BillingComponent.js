@@ -79,11 +79,16 @@ const BillingComponent = (props) => {
     let queryRefBilling;
     queryRefBilling = query(collection(db, 'BillingDetailsPrefixVOB'), where('prefix', '==', searchTerm.toUpperCase()),orderBy(sort));
     onSnapshot(queryRefBilling, snapshot => {
-      let billings = [];
-      snapshot.docs.forEach(doc => {
-          billings.push({data: doc.data(), id: doc.id});
-      });
-      setBillingList(billings)
+      console.log(snapshot.docs.length)
+      if(snapshot.docs.length < 1){
+        alert(`No records found with prefix ${searchTerm.toUpperCase()}`)
+      } else {
+        let billings = [];
+        snapshot.docs.forEach(doc => {
+            billings.push({data: doc.data(), id: doc.id});
+        });
+        setBillingList(billings)
+      }
     });
   }
 
@@ -102,7 +107,6 @@ const BillingComponent = (props) => {
   const clearSearch = () => {
     grabBilling()
     setActiveSearch(false)
-    setSearchTerm('')
   }
 
   return (

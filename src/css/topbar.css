@@ -45,6 +45,7 @@
   padding-bottom: 4px;
   border-radius: 6px;
   flex-grow: 1;
+  font-size: 18px;
 }
 
 .tb-search-bar-dark {
@@ -87,7 +88,8 @@
   width: 100%;
   flex-grow: 1;
   border: 0;
-  font-size: 14px;
+  font-size: 16px;
+  padding-top: 4px;
   background-color: white;
   border-bottom: 2px solid #009ea1;
   color: black;
@@ -98,7 +100,8 @@
   width: 100%;
   flex-grow: 1;
   border: 0;
-  font-size: 14px;
+  font-size: 16px;
+  padding-top: 4px;
   background-color: #292929;
   border-bottom: 2px solid #009ea1;
   color: white;
