@@ -12,11 +12,11 @@ function App() {
 
   const [userAccess, setuserAccess] = useState('staff')
   const [userInfo, setUserInfo] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        setCurrentView('content');
         grabUserInfo();
       } else {
         setCurrentView('login');
@@ -37,9 +37,9 @@ function App() {
           }
           setUserInfo(access)
           setuserAccess(access.status)
+          setCurrentView('content');
         } else {
           console.error("No such user!");
-          return null;
         }
       })
       .catch((error) => {
@@ -61,12 +61,16 @@ function App() {
   return (
     <div className="App">
       {
-        currentView === 'loading'
+        loading === true
           ? <LoadingScreen/>
           : currentView === 'login'
               ? <LoginScreen/>
               : currentView === 'content'
-                  ? <ContentScreen setCurrentView={setCurrentView} userAccess={userAccess}/>
+                  ? <ContentScreen 
+                      setCurrentView={setCurrentView} 
+                      userAccess={userAccess}
+                      loading={loading}
+                      setLoading={setLoading}/>
                   : null
       }
     </div>
