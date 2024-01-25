@@ -19,13 +19,13 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  opacity: 0.5;
+  opacity: 0.9;
   z-index: 1;
 }
 
 .login-container-background {
   position: absolute;
-  height: 100vh;
+  height: 500px;
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,36 @@
   align-items: center;
   z-index: 2;
   background-color: white;
-  opacity: .7;
+  opacity: .8;
+  border-radius: 15px;
+}
+
+.forgot-password-container-background {
+  position: absolute;
+  height: 370px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  background-color: white;
+  opacity: .8;
+  border-radius: 15px;
+}
+
+.signup-container-background {
+  position: absolute;
+  height: 600px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  background-color: white;
+  opacity: .8;
+  border-radius: 15px;
 }
 
 .login-container {

@@ -17,7 +17,13 @@ const LoginScreen = (props) => {
     return (
       <div className='page'>
         <img className='background-image' src={imageLake} alt='backgroundImage'/>
-        <div className='login-container-background'></div>
+        {
+            currentTab === 'Login'
+              ? <div className='login-container-background'></div>
+              : currentTab === 'Reset'
+                  ? <div className='forgot-password-container-background'></div>
+                  : <div className='signup-container-background'></div>
+          }
         <div className='login-container'>
           <div className='image-container'>
             <img className='logo-image' src={image} alt='Intellisurance logo'/>
