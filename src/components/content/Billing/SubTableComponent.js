@@ -31,6 +31,14 @@ const SubTableComponent = (props) => {
     return `${month}/${day}/${year}`;
   }
 
+  function getFirstLetter(str) {
+    if (str && str.length > 0) {
+      return str[0];
+    } else {
+      return ''; // Return an empty string if the input is empty or not a string
+    }
+  }
+
   return (
     <div className='main-content-area-split-bottom'>
       <table className='table-container-dark'>
@@ -38,6 +46,7 @@ const SubTableComponent = (props) => {
           <tr>
             <th>Prefix</th>
             <th>Policy</th>
+            <th>Name</th>
             <th>Insurance</th>
             <th>Network</th>
             <th>Res. Days</th>
@@ -65,6 +74,7 @@ const SubTableComponent = (props) => {
                 <tr>
                   <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
                   <td style={{fontWeight: 'bold'}}>{record.data.insurancePolicy}</td>
+                  <td style={{fontWeight: 'bold'}}>{record.data.firstName} {getFirstLetter(record.data.lastName)}. </td>
                   <td style={{fontWeight: 'bold'}}>{record.data.insuranceName}</td>
                   <td style={{fontWeight: 'bold'}}>{record.data.network}</td>
                   <td style={{fontWeight: 'bold'}}>{record.data.residentialDaysAverage} Days</td>
