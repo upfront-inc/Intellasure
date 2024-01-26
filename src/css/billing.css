@@ -119,6 +119,32 @@
   /* 16px vertical padding */
 }
 
+.tr-light {
+  background-color: white;
+}
+
+.tr-light:hover {
+  background-color: #f3fff4; /* Remove quotes around color value */
+}
+
+.tr-dark {
+  background-color: #202020;
+}
+
+.tr-dark:hover {
+  background-color: #565656; /* Remove quotes around color value */
+}
+
+.table-container-light td {
+  border: none;
+  text-align: center;
+  font-weight: 500;
+  padding: 24px 8px;
+  font-size: 14px;
+  border-bottom: 2px solid #f3f3f3;
+  /* 16px vertical padding */
+}
+
 .table-container-dark td {
   border: none;
   text-align: center;

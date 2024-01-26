@@ -45,7 +45,7 @@ const BillingTableContentComponent = (props) => {
             if(index === selectedRow){
 
               return(
-                <tr className='tr-light' style={{backgroundColor: '#efefef'}}>
+                <tr className='tr-light'>
                   {
                     viewPrefix
                       ? <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
@@ -144,7 +144,7 @@ const BillingTableContentComponent = (props) => {
               )
             } else {
               return(
-                <tr className='tr-light' style={{backgroundColor: 'white'}}>
+                <tr className='tr-light'>
                   {
                     viewPrefix
                       ? <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
@@ -245,7 +245,7 @@ const BillingTableContentComponent = (props) => {
           } else {
             if(index === selectedRow){
               return(
-                <tr className='tr-dark'  style={{backgroundColor: '#202020'}}>
+                <tr className='tr-dark'>
                   {
                     viewPrefix
                       ? <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
@@ -344,7 +344,7 @@ const BillingTableContentComponent = (props) => {
               )
             } else {
               return(
-                <tr className='tr-dark'  style={{backgroundColor: 'black'}}>
+                <tr className='tr-dark'>
                   {
                     viewPrefix
                       ? <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
