@@ -110,7 +110,7 @@ const PrefixDetailsComponent = (props) => {
             <th>Network</th>
             <th>Res. Units</th>
             <th>Res. Admissions</th>
-            <th>Det. Unites</th>
+            <th>Det. Units</th>
             <th>Det. Admissions</th>
             {
               userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'

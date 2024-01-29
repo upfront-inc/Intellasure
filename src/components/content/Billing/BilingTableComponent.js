@@ -104,22 +104,22 @@ const BilingTableComponent = (props) => {
                                 }
                                 {
                                   viewResDays
-                                    ? <th>Res. Days</th>
+                                    ? <th>Res. Units</th>
                                     : null
                                 }
                                 {
                                   viewResVisits
-                                    ? <th>Res. Visits</th>
+                                    ? <th>Res. Addmissions</th>
                                     : null
                                 }
                                 {
                                   viewDetoxDays
-                                    ? <th>Detox Days</th>
+                                    ? <th>Detox Units</th>
                                     : null
                                 }
                                 {
                                   viewDetoxVisits
-                                    ? <th>Detox Visits</th>
+                                    ? <th>Detox Addmissions</th>
                                     : null
                                 }
                                 {
