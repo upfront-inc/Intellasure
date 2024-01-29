@@ -49,10 +49,10 @@ const SubTableComponent = (props) => {
             <th>Name</th>
             <th>Insurance</th>
             <th>Network</th>
-            <th>Res. Days</th>
-            <th>Res. Visits</th>
-            <th>Det. Days</th>
-            <th>Det. Visits</th>
+            <th>Res. Units</th>
+            <th>Res. Admissions</th>
+            <th>Det. Unites</th>
+            <th>Det. Admissions</th>
             {
               userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
                 ? <th>Total Charged</th>

@@ -4,6 +4,8 @@ import SupportComponent from '../components/SupportComponent'
 import AccountComponent from '../components/content/Accounts/AccountComponent'
 import BillingComponent from '../components/content/Billing/BillingComponent'
 import DailyRateComponent from '../components/content/DailyRates/DailyRateComponent'
+import FlaggedComponent from '../components/content/Flagged/FlaggedComponent'
+import MissingComponent from '../components/content/Missing/MissingComponent'
 import TicketComponent from '../components/content/Tickets/TicketComponent'
 import '../css/content.css'
 import React, { useEffect, useState } from 'react'
@@ -78,21 +80,41 @@ const ContentScreen = (props) => {
                                 setMenuSize={setMenuSize}
                                 mode={mode}
                               />
-                            : contentTab === 'tickets'
-                                ? <TicketComponent 
-                                    contentTab={contentTab} 
-                                    setContentTab={setContentTab} 
-                                    userAccess={userAccess}
-                                    setCurrentView={setCurrentView}
-                                    menuSize={menuSize}
-                                    setMenuSize={setMenuSize}
-                                    mode={mode}
-                                  />
-                                : contentTab === 'help'
-                                    ? <SupportComponent mode={mode}/>
-                                    : contentTab === 'profile'
-                                        ? <ProfileComponent mode={mode} setMode={setMode}/>
-                                        : null
+                            : contentTab === 'flagged'
+                              ? <FlaggedComponent 
+                                  contentTab={contentTab} 
+                                  setContentTab={setContentTab} 
+                                  userAccess={userAccess}
+                                  setCurrentView={setCurrentView}
+                                  menuSize={menuSize}
+                                  setMenuSize={setMenuSize}
+                                  mode={mode}
+                                />
+                              : contentTab === 'tickets'
+                                  ? <TicketComponent 
+                                      contentTab={contentTab} 
+                                      setContentTab={setContentTab} 
+                                      userAccess={userAccess}
+                                      setCurrentView={setCurrentView}
+                                      menuSize={menuSize}
+                                      setMenuSize={setMenuSize}
+                                      mode={mode}
+                                    />
+                                  : contentTab === 'missing'
+                                      ? <MissingComponent 
+                                          contentTab={contentTab} 
+                                          setContentTab={setContentTab} 
+                                          userAccess={userAccess}
+                                          setCurrentView={setCurrentView}
+                                          menuSize={menuSize}
+                                          setMenuSize={setMenuSize}
+                                          mode={mode}
+                                        />
+                                      : contentTab === 'help'
+                                          ? <SupportComponent mode={mode}/>
+                                          : contentTab === 'profile'
+                                              ? <ProfileComponent mode={mode} setMode={setMode}/>
+                                              : null
                 }
               </div>
             </div>
@@ -154,8 +176,8 @@ const ContentScreen = (props) => {
                                 setMenuSize={setMenuSize}
                                 mode={mode}
                               />
-                            : contentTab === 'tickets'
-                                ? <TicketComponent 
+                            : contentTab === 'flagged'
+                                ? <FlaggedComponent 
                                     contentTab={contentTab} 
                                     setContentTab={setContentTab} 
                                     userAccess={userAccess}
@@ -164,11 +186,31 @@ const ContentScreen = (props) => {
                                     setMenuSize={setMenuSize}
                                     mode={mode}
                                   />
-                                : contentTab === 'help'
-                                    ? <SupportComponent mode={mode}/>
-                                    : contentTab === 'profile'
-                                        ? <ProfileComponent mode={mode} setMode={setMode}/>
-                                        : null
+                                : contentTab === 'tickets'
+                                    ? <TicketComponent 
+                                        contentTab={contentTab} 
+                                        setContentTab={setContentTab} 
+                                        userAccess={userAccess}
+                                        setCurrentView={setCurrentView}
+                                        menuSize={menuSize}
+                                        setMenuSize={setMenuSize}
+                                        mode={mode}
+                                      />
+                                    : contentTab === 'missing'
+                                        ? <MissingComponent 
+                                            contentTab={contentTab} 
+                                            setContentTab={setContentTab} 
+                                            userAccess={userAccess}
+                                            setCurrentView={setCurrentView}
+                                            menuSize={menuSize}
+                                            setMenuSize={setMenuSize}
+                                            mode={mode}
+                                          />
+                                        : contentTab === 'help'
+                                            ? <SupportComponent mode={mode}/>
+                                            : contentTab === 'profile'
+                                                ? <ProfileComponent mode={mode} setMode={setMode}/>
+                                                : null
                 }
               </div>
             </div>

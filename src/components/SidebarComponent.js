@@ -7,7 +7,7 @@ import image2 from '../assets/logo.png'
 import { signOut } from 'firebase/auth'
 import { auth } from '../auth/Firebase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faShieldAlt, faMoneyBills, faUsers, faCode, faReceipt, faQuestionCircle, faRightFromBracket, faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faShieldAlt, faMoneyBills, faUsers, faCode, faReceipt, faQuestionCircle, faRightFromBracket, faAnglesLeft, faAnglesRight, faFlag, faX } from '@fortawesome/free-solid-svg-icons'
 
 const SidebarComponent = (props) => {
   const {
@@ -95,6 +95,44 @@ const SidebarComponent = (props) => {
                               </div>
                         }
                         {
+                          contentTab === 'flagged'
+                            ? <div className='icon-label-button-light selected'>
+                                <FontAwesomeIcon icon={faFlag} className="icon-menu"/>
+                                {
+                                  menuSize === 'half'
+                                    ? null
+                                    : <p className='icon-text'>Flagged</p>
+                                }
+                              </div>
+                            : <div className='icon-label-button-light hover' onClick={() => {setContentTab('flagged')}}>
+                                <FontAwesomeIcon icon={faFlag} className="icon-menu"/>
+                                {
+                                  menuSize === 'half'
+                                    ? null
+                                    : <p className='icon-text'>Flagged</p>
+                                }
+                              </div>
+                        }
+                        {
+                          contentTab === 'missing'
+                            ? <div className='icon-label-button-light selected'>
+                                <FontAwesomeIcon icon={faQuestionCircle} className="icon-menu"/>
+                                {
+                                  menuSize === 'half'
+                                    ? null
+                                    : <p className='icon-text'>Missing</p>
+                                }
+                              </div>
+                            : <div className='icon-label-button-light hover' onClick={() => {setContentTab('missing')}}>
+                                <FontAwesomeIcon icon={faQuestionCircle} className="icon-menu"/>
+                                {
+                                  menuSize === 'half'
+                                    ? null
+                                    : <p className='icon-text'>Missing</p>
+                                }
+                              </div>
+                        }
+                        {
                               contentTab === 'accounts'
                                 ? <div className='icon-label-button-light selected'>
                                     <FontAwesomeIcon icon={faUsers} className="icon-menu"/>
@@ -132,6 +170,44 @@ const SidebarComponent = (props) => {
                                       menuSize === 'half'
                                         ? null
                                         : <p className='icon-text'>Daily Rates</p>
+                                    }
+                                  </div>
+                            }
+                            {
+                              contentTab === 'flagged'
+                                ? <div className='icon-label-button-light selected'>
+                                    <FontAwesomeIcon icon={faFlag} className="icon-menu"/>
+                                    {
+                                      menuSize === 'half'
+                                        ? null
+                                        : <p className='icon-text'>Flagged</p>
+                                    }
+                                  </div>
+                                : <div className='icon-label-button-light hover' onClick={() => {setContentTab('flagged')}}>
+                                    <FontAwesomeIcon icon={faFlag} className="icon-menu"/>
+                                    {
+                                      menuSize === 'half'
+                                        ? null
+                                        : <p className='icon-text'>Flagged</p>
+                                    }
+                                  </div>
+                            }
+                            {
+                              contentTab === 'missing'
+                                ? <div className='icon-label-button-light selected'>
+                                    <FontAwesomeIcon icon={faQuestionCircle} className="icon-menu"/>
+                                    {
+                                      menuSize === 'half'
+                                        ? null
+                                        : <p className='icon-text'>Missing</p>
+                                    }
+                                  </div>
+                                : <div className='icon-label-button-light hover' onClick={() => {setContentTab('missing')}}>
+                                    <FontAwesomeIcon icon={faQuestionCircle} className="icon-menu"/>
+                                    {
+                                      menuSize === 'half'
+                                        ? null
+                                        : <p className='icon-text'>Missing</p>
                                     }
                                   </div>
                             }

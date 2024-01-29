@@ -4,6 +4,7 @@ import BillingSearchComponent from './BillingSearchComponent'
 import '../../../css/billing.css'
 import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore'
 import { db } from '../../../auth/Firebase'
+import PrefixDetailsComponent from './PrefixDetailsComponent'
 
 const BillingComponent = (props) => {
   const {mode, contentTab, userAccess, setContentTab} = props
@@ -33,6 +34,10 @@ const BillingComponent = (props) => {
   const [viewPayout, setViewPayout] = useState(true)
   const [viewDeciion, setViewDeciion] = useState(true)
   const [viewAdmit, setViewAdmit] = useState(true)
+
+  const [viewSubTable, setViewSubTable] = useState(false)
+  const [subTablePrefix, setSubTablePrefix] = useState('')
+  const [subTableInsurance, setSubTableInsurance] = useState('')
 
   useEffect(() => {
     grabBilling()
@@ -113,7 +118,14 @@ const BillingComponent = (props) => {
     <>
       {
         mode == 'light'
-          ? <div className='main-billing-content'>
+          ? viewSubTable
+              ? <PrefixDetailsComponent 
+                  prefix={subTablePrefix} 
+                  insuranceName={subTableInsurance} 
+                  mode={mode} 
+                  userAccess={userAccess}
+                  setViewSubTable={setViewSubTable}/>
+              : <div className='main-billing-content'>
               <div className='top-bar'>  
                 <BillingSearchComponent 
                   searchTerm={searchTerm}
@@ -181,84 +193,101 @@ const BillingComponent = (props) => {
                   viewPayout={viewPayout}
                   viewDeciion={viewDeciion}
                   viewAdmit={viewAdmit}
+                  
+                  viewSubTable={viewSubTable}
+                  setViewSubTable={setViewSubTable}
+                  setSubTablePrefix={setSubTablePrefix}
+                  setSubTableInsurance={setSubTableInsurance}
 
                   userAccess={userAccess}
                 />
               </div>
             </div>
-          : <div className='main-billing-content-dark'>
-              <div className='top-bar'>  
-                <BillingSearchComponent 
-                  searchTerm={searchTerm}
-                  handleSearchChange={handleSearchChange}
-                  mode={mode}
-                  searchCurrentQuery={searchCurrentQuery}
-                  activeSearch={activeSearch}
-                  setActiveSearch={setActiveSearch}
-                  clearSearch={clearSearch}
-                  setSort={setSort}
-                  setViewTable={setViewTable}
-
-                  viewPrefix={viewPrefix}
-                  viewInsurance={viewInsurance}
-                  viewNetwork={viewNetwork}
-                  viewFacilityCol={viewFacilityCol}
-                  viewResDays={viewResDays}
-                  viewResVisits={viewResVisits}
-                  viewDetoxDays={viewDetoxDays}
-                  viewDetoxVisits={viewDetoxVisits}
-                  viewTotalCharge={viewTotalCharge}
-                  viewTotalPaid={viewTotalPaid}
-                  viewPayout={viewPayout}
-                  viewDeciion={viewDeciion}
-                  viewAdmit={viewAdmit}
-
-                  setViewPrefix={setViewPrefix}
-                  setViewInsurance={setViewInsurance}
-                  setViewNetwork={setViewNetwork}
-                  setViewFacilityCol={setViewFacilityCol}
-                  setViewResDays={setViewResDays}
-                  setViewResVisits={setViewResVisits}
-                  setViewDetoxDays={setViewDetoxDays}
-                  setViewDetoxVisits={setViewDetoxVisits}
-                  setViewTotalCharge={setViewTotalCharge}
-                  setViewTotalPaid={setViewTotalPaid}
-                  setViewPayout={setViewPayout}
-                  setViewDeciion={setViewDeciion}
-                  setViewAdmit={setViewAdmit}
-
+          : viewSubTable
+              ? <PrefixDetailsComponent 
+                  prefix={subTablePrefix} 
+                  insuranceName={subTableInsurance} 
+                  mode={mode} 
                   userAccess={userAccess}
-                />
-              </div>
-              <div className='main-content'>
-                <BilingTableComponent 
-                  affinityRecords={affinityRecords}
-                  beacsideRecords={beacsideRecords}
-                  axisRecords={axisRecords}
-                  billingList={billingList}
-                  viewTable={viewTable}
-                  setViewTable={setViewTable}
-                  mode={mode}
-                  viewFacility={viewFacility}
+                  setViewSubTable={setViewSubTable}/>
+              : <div className='main-billing-content-dark'>
+                  <div className='top-bar'>  
+                    <BillingSearchComponent 
+                      searchTerm={searchTerm}
+                      handleSearchChange={handleSearchChange}
+                      mode={mode}
+                      searchCurrentQuery={searchCurrentQuery}
+                      activeSearch={activeSearch}
+                      setActiveSearch={setActiveSearch}
+                      clearSearch={clearSearch}
+                      setSort={setSort}
+                      setViewTable={setViewTable}
 
-                  viewPrefix={viewPrefix}
-                  viewInsurance={viewInsurance}
-                  viewNetwork={viewNetwork}
-                  viewFacilityCol={viewFacilityCol}
-                  viewResDays={viewResDays}
-                  viewResVisits={viewResVisits}
-                  viewDetoxDays={viewDetoxDays}
-                  viewDetoxVisits={viewDetoxVisits}
-                  viewTotalCharge={viewTotalCharge}
-                  viewTotalPaid={viewTotalPaid}
-                  viewPayout={viewPayout}
-                  viewDeciion={viewDeciion}
-                  viewAdmit={viewAdmit}
+                      viewPrefix={viewPrefix}
+                      viewInsurance={viewInsurance}
+                      viewNetwork={viewNetwork}
+                      viewFacilityCol={viewFacilityCol}
+                      viewResDays={viewResDays}
+                      viewResVisits={viewResVisits}
+                      viewDetoxDays={viewDetoxDays}
+                      viewDetoxVisits={viewDetoxVisits}
+                      viewTotalCharge={viewTotalCharge}
+                      viewTotalPaid={viewTotalPaid}
+                      viewPayout={viewPayout}
+                      viewDeciion={viewDeciion}
+                      viewAdmit={viewAdmit}
 
-                  userAccess={userAccess}
-                />
-              </div>
-            </div>
+                      setViewPrefix={setViewPrefix}
+                      setViewInsurance={setViewInsurance}
+                      setViewNetwork={setViewNetwork}
+                      setViewFacilityCol={setViewFacilityCol}
+                      setViewResDays={setViewResDays}
+                      setViewResVisits={setViewResVisits}
+                      setViewDetoxDays={setViewDetoxDays}
+                      setViewDetoxVisits={setViewDetoxVisits}
+                      setViewTotalCharge={setViewTotalCharge}
+                      setViewTotalPaid={setViewTotalPaid}
+                      setViewPayout={setViewPayout}
+                      setViewDeciion={setViewDeciion}
+                      setViewAdmit={setViewAdmit}
+
+                      userAccess={userAccess}
+                    />
+                  </div>
+                  <div className='main-content'>
+                    <BilingTableComponent 
+                      affinityRecords={affinityRecords}
+                      beacsideRecords={beacsideRecords}
+                      axisRecords={axisRecords}
+                      billingList={billingList}
+                      viewTable={viewTable}
+                      setViewTable={setViewTable}
+                      mode={mode}
+                      viewFacility={viewFacility}
+
+                      viewPrefix={viewPrefix}
+                      viewInsurance={viewInsurance}
+                      viewNetwork={viewNetwork}
+                      viewFacilityCol={viewFacilityCol}
+                      viewResDays={viewResDays}
+                      viewResVisits={viewResVisits}
+                      viewDetoxDays={viewDetoxDays}
+                      viewDetoxVisits={viewDetoxVisits}
+                      viewTotalCharge={viewTotalCharge}
+                      viewTotalPaid={viewTotalPaid}
+                      viewPayout={viewPayout}
+                      viewDeciion={viewDeciion}
+                      viewAdmit={viewAdmit}
+
+                      viewSubTable={viewSubTable}
+                      setViewSubTable={setViewSubTable}
+                      setSubTablePrefix={setSubTablePrefix}
+                      setSubTableInsurance={setSubTableInsurance}
+
+                      userAccess={userAccess}
+                    />
+                  </div>
+                </div>
       }
     </>
   )

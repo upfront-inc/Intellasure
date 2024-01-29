@@ -28,6 +28,10 @@ const BilingTableComponent = (props) => {
     viewPayout,
     viewDeciion,
     viewAdmit,
+    viewSubTable,
+    setViewSubTable,
+    setSubTablePrefix,
+    setSubTableInsurance,
   } = props
 
   const [showSubTable, setShowSubTable] = useState(false)
@@ -38,9 +42,10 @@ const BilingTableComponent = (props) => {
 
   const handleShowSubRecords = (customer, index) => {
     console.log('show sub table: ', index)
-    grabAssociatedRecords(customer);
-    setShowSubTable(true);
-    setSelectedRow(index); // Use index or any other unique identifier
+    console.log('show customer: ', customer)
+    setSubTablePrefix(customer.data.prefix)
+    setSubTableInsurance(customer.data.insuranceName)
+    setViewSubTable(true);
   };
 
   const handleCloseSubRecords = () => {
