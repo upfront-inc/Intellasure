@@ -5,7 +5,11 @@ const FlaggedTableComponent = (props) => {
   const {
     records,
     mode,
-    userAccess
+    userAccess,
+    setSortField,
+    setSortDirection,
+    sortField,
+    sortDirection,
   } = props
 
 
@@ -39,34 +43,26 @@ const FlaggedTableComponent = (props) => {
     }
   }
 
-  function getLatestDate(datesString) {
-    if (!datesString) {
-        return 'NaN'; // Return null if the input is null or undefined
+  const handleSort = (field) => {
+    if (field === sortField) {
+        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+        setSortField(field);
+        setSortDirection('asc');
     }
+  };
 
-    // Split the string by commas and filter out any "undefined" values
-    const datesArray = datesString.split(',').filter(date => date.trim() !== 'undefined' && date.trim() !== '');
-
-    if (datesArray.length === 0) {
-        return 'NaN'; // Return null if there are no valid dates
-    }
-
-    // Further split each element by new lines and flatten the resulting arrays
-    const allDates = datesArray.flatMap(date => date.split('\n').map(d => d.trim())).filter(d => d !== '');
-
-    // Convert each date string to a Date object and sort the array
-    const sortedDates = allDates.map(date => new Date(date)).sort((a, b) => b - a);
-
-    // Get the latest date (the first date in the sorted array)
-    const latestDate = sortedDates[0];
-
-    // Format the latest date to MM/DD/YYYY
-    const month = (latestDate.getMonth() + 1).toString().padStart(2, '0');
-    const day = latestDate.getDate().toString().padStart(2, '0');
-    const year = latestDate.getFullYear();
-
+  function convertTimestampToDDMMYYYY(timestamp) {
+    // Create a new Date object from the timestamp (convert seconds to milliseconds)
+    const date = new Date(timestamp.seconds * 1000);
+  
+    // Format the date as DD/MM/YYYY
+    const day = ("0" + date.getDate()).slice(-2); // Add leading zero if needed
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Add leading zero if needed, month is 0-indexed
+    const year = date.getFullYear();
+  
     return `${month}/${day}/${year}`;
-  }
+}
 
   return (
     <div className='main-content-area-full'>
@@ -75,27 +71,85 @@ const FlaggedTableComponent = (props) => {
           ? <table className='table-container-light'>
               <thead>
                 <tr>
-                <th>Prefix</th>
-                <th>Policy</th>
-                <th>Name</th>
-                <th>Insurance</th>
-                <th>Network</th>
+                <th onClick={() => handleSort('prefix')}>Prefix</th>
+                <th onClick={() => handleSort('insurancePolicy')}>Policy</th>
+                <th onClick={() => handleSort('patientName')}>Name</th>
+                <th onClick={() => handleSort('insuranceName')}>Insurance</th>
+                <th onClick={() => handleSort('network')}>Network</th>
                 <th>Res. Units</th>
                 <th>Res. Admissions</th>
                 <th>Det. Units</th>
                 <th>Det. Admissions</th>
                 {
                   userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th>Total Charged</th>
+                    ? <th onClick={() => handleSort('totalCharges')}>Total Charged</th>
                     : null
                 }
                 {
                   userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th>Total Paid</th>
+                    ? <th onClick={() => handleSort('totalPaid')}>Total Paid</th>
                     : null
                 }
-                <th>Payout %</th>
-                <th>Last Updated</th>
+                <th onClick={() => handleSort('payoutRatio')}>Payout %</th>
+                <th onClick={() => handleSort('latestDate')}>Last Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                { records.map(record => {
+                    console.log(record.data.latestDate)
+                      return(
+                        <tr>
+                          <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
+                          <td>{record.data.insurancePolicy}</td>
+                          <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
+                          <td>{limitString(record.data.insuranceName)}</td>
+                          <td>{record.data.network}</td>
+                          <td>{record.data.RTC.averageDaysOfCare} Days</td>
+                          <td>{record.data.RTC.totalVisits} Visits</td>
+                          <td>{record.data.Detox.averageDaysOfCare} Days</td>
+                          <td>{record.data.Detox.totalVisits} Visits</td>
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? <td>{formatDollarAmount(record.data.totalCharges)}</td>
+                              : null
+                          }
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? <td>{formatDollarAmount(record.data.totalPaid)}</td>
+                              : null
+                          }
+                          <td>{Math.round(record.data.payoutRatio * 100)}%</td>
+                          <td>{convertTimestampToDDMMYYYY(record.data.latestDate)}</td>
+                        </tr>
+                      )
+                    })
+                  }     
+              </tbody>
+            </table>
+          : <table className='table-container-light'>
+              <thead>
+                <tr>
+                <th onClick={() => handleSort('prefix')}>Prefix</th>
+                <th onClick={() => handleSort('insurancePolicy')}>Policy</th>
+                <th onClick={() => handleSort('patientName')}>Name</th>
+                <th onClick={() => handleSort('insuranceName')}>Insurance</th>
+                <th onClick={() => handleSort('network')}>Network</th>
+                <th>Res. Units</th>
+                <th>Res. Admissions</th>
+                <th>Det. Units</th>
+                <th>Det. Admissions</th>
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? <th onClick={() => handleSort('totalCharges')}>Total Charged</th>
+                    : null
+                }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? <th onClick={() => handleSort('totalPaid')}>Total Paid</th>
+                    : null
+                }
+                <th onClick={() => handleSort('payoutRatio')}>Payout %</th>
+                <th onClick={() => handleSort('latestDate')}>Last Updated</th>
                 </tr>
               </thead>
               <tbody>
@@ -122,53 +176,11 @@ const FlaggedTableComponent = (props) => {
                               : null
                           }
                           <td>{Math.round(record.data.payoutRatio * 100)}%</td>
-                          <td>{getLatestDate(record.data.datesPaid)}</td>
+                          <td>{convertTimestampToDDMMYYYY(record.data.latestDate)}</td>
                         </tr>
                       )
                     })
                   }     
-              </tbody>
-            </table>
-          : <table className='table-container-dark'>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Ticket</th>
-                  <th>Subject</th>
-                  <th>Status</th>
-                  <th>Details</th>
-                </tr>
-              </thead>
-              <tbody>
-                { records.map(record => {
-                    return(
-                      <tr>
-                        <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
-                        <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
-                        <td>{record.data.insurancePolicy}</td>
-                        <td>{record.data.insuranceName}</td>
-                        <td>{record.data.network}</td>
-                        <td>{record.data.RTC.averageDaysOfCare} Days</td>
-                        <td>{record.data.RTC.totalVisits} Visits</td>
-                        <td>{record.data.Detox.averageDaysOfCare} Days</td>
-                        <td>{record.data.Detox.totalVisits} Visits</td>
-                        {
-                          userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                            ? <td>{formatDollarAmount(record.data.totalCharges)}</td>
-                            : null
-                        }
-                        {
-                          userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                            ? <td>{formatDollarAmount(record.data.totalPaid)}</td>
-                            : null
-                        }
-                        <td>{Math.round(record.data.payoutRatio * 100)}%</td>
-                        <td>{record.data.datesPaid || 'NaN'}</td>
-                      </tr>
-                    )
-                  })
-                }  
               </tbody>
             </table>
       }

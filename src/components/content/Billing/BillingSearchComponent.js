@@ -85,8 +85,8 @@ const BillingSearchComponent = (props) => {
                 <div onClick={() => handleSortOptionClick('insuranceName')}>Insurance</div>
                 <div onClick={() => handleSortOptionClick('facility')}>Facility</div>
                 <div onClick={() => handleSortOptionClick('network')}>Network</div>
-                <div onClick={() => handleSortOptionClick('totalCharges')}>Total Charges</div>
-                <div onClick={() => handleSortOptionClick('totalPaid')}>Total Paid</div>
+                <div onClick={() => handleSortOptionClick('prefixChargeAverage')}>Total Charges</div>
+                <div onClick={() => handleSortOptionClick('prefixPaidAverage')}>Total Paid</div>
                 <div onClick={() => handleSortOptionClick('payoutRatio')}>Payout Ratio</div>
               </div>
               <div onClick={() => setShowFilterOptions(!showFilterOptions)} className='button-container button-end'>
