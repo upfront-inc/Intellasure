@@ -104,9 +104,9 @@ const FlaggedTableComponent = (props) => {
                           <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
                           <td>{limitString(record.data.insuranceName)}</td>
                           <td>{record.data.network}</td>
-                          <td>{record.data.RTC.averageDaysOfCare} Days</td>
+                          <td>{Math.round(record.data.RTC.averageDaysOfCare)} Days</td>
                           <td>{record.data.RTC.totalVisits} Visits</td>
-                          <td>{record.data.Detox.averageDaysOfCare} Days</td>
+                          <td>{Math.round(record.data.Detox.averageDaysOfCare)} Days</td>
                           <td>{record.data.Detox.totalVisits} Visits</td>
                           {
                             userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
@@ -161,9 +161,9 @@ const FlaggedTableComponent = (props) => {
                           <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
                           <td>{limitString(record.data.insuranceName)}</td>
                           <td>{record.data.network}</td>
-                          <td>{record.data.RTC.averageDaysOfCare} Days</td>
+                          <td>{Math.round(record.data.RTC.averageDaysOfCare)} Days</td>
                           <td>{record.data.RTC.totalVisits} Visits</td>
-                          <td>{record.data.Detox.averageDaysOfCare} Days</td>
+                          <td>{Math.round(record.data.Detox.averageDaysOfCare)} Days</td>
                           <td>{record.data.Detox.totalVisits} Visits</td>
                           {
                             userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
