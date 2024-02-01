@@ -91,6 +91,16 @@ const FlaggedTableComponent = (props) => {
                     : null
                 }
                 <th onClick={() => handleSort('payoutRatio')}>Payout %</th>
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? <th>VOB Decision</th>
+                    : null
+                }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? <th>VOB %</th>
+                    : null
+                }
                 <th onClick={() => handleSort('latestDate')}>Last Updated</th>
                 </tr>
               </thead>
@@ -119,6 +129,18 @@ const FlaggedTableComponent = (props) => {
                               : null
                           }
                           <td>{Math.round(record.data.payoutRatio * 100)}%</td>
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? record.data.vobDecision 
+                                  ? <td>{record.data.vobDecision.split(' ')[0]}</td>
+                                  : null
+                              : null
+                          }
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? <td>{Math.round(record.data.vobPercent)}%</td>
+                              : null
+                          }
                           <td>{convertTimestampToDDMMYYYY(record.data.latestDate)}</td>
                         </tr>
                       )
@@ -148,7 +170,22 @@ const FlaggedTableComponent = (props) => {
                     ? <th onClick={() => handleSort('totalPaid')}>Total Paid</th>
                     : null
                 }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                  ? <th onClick={() => handleSort('totalPaid')}>Total Paid</th>
+                  : null
+                }
                 <th onClick={() => handleSort('payoutRatio')}>Payout %</th>
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? <th>VOB Decision</th>
+                    : null
+                }
+                {
+                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                    ? <th>VOB %</th>
+                    : null
+                }
                 <th onClick={() => handleSort('latestDate')}>Last Updated</th>
                 </tr>
               </thead>
@@ -176,6 +213,18 @@ const FlaggedTableComponent = (props) => {
                               : null
                           }
                           <td>{Math.round(record.data.payoutRatio * 100)}%</td>
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? record.data.vobDecision 
+                                  ? <td>{record.data.vobDecision.split(' ')[0]}</td>
+                                  : null
+                              : null
+                          }
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? <td>{Math.round(record.data.vobPercent)}%</td>
+                              : null
+                          }
                           <td>{convertTimestampToDDMMYYYY(record.data.latestDate)}</td>
                         </tr>
                       )
