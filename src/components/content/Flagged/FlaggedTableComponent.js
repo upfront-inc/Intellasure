@@ -1,5 +1,7 @@
 import React from 'react'
 import '../../../css/billing.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAnglesDown, faAnglesUp, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 const FlaggedTableComponent = (props) => {
   const {
@@ -64,49 +66,99 @@ const FlaggedTableComponent = (props) => {
     return `${month}/${day}/${year}`;
 }
 
+console.log(sortDirection)
+
   return (
     <div className='main-content-area-full'>
+      <div className='table-scroll-wrapper'>
       {
         mode === 'light'
           ? <table className='table-container-light'>
               <thead>
                 <tr>
-                <th onClick={() => handleSort('prefix')}>Prefix</th>
-                <th onClick={() => handleSort('insurancePolicy')}>Policy</th>
-                <th onClick={() => handleSort('patientName')}>Name</th>
-                <th onClick={() => handleSort('insuranceName')}>Insurance</th>
-                <th onClick={() => handleSort('network')}>Network</th>
-                <th>Res. Units</th>
-                <th>Res. Admissions</th>
-                <th>Det. Units</th>
-                <th>Det. Admissions</th>
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th onClick={() => handleSort('totalCharges')}>Total Charged</th>
-                    : null
-                }
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th onClick={() => handleSort('totalPaid')}>Total Paid</th>
-                    : null
-                }
-                <th onClick={() => handleSort('payoutRatio')}>Payout %</th>
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th>VOB Decision</th>
-                    : null
-                }
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th>VOB %</th>
-                    : null
-                }
-                <th onClick={() => handleSort('latestDate')}>Last Updated</th>
+                  <th onClick={() => handleSort('prefix')}>Prefix
+                    {
+                      sortDirection === 'asc' 
+                        ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                        : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                    }
+                  </th>
+                  <th onClick={() => handleSort('insurancePolicy')}>Policy
+                    {
+                      sortDirection === 'asc' 
+                        ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                        : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                    }
+                  </th>
+                  <th onClick={() => handleSort('patientName')}>Name
+                    {
+                      sortDirection === 'asc' 
+                        ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                        : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                    }
+                  </th>
+                  <th onClick={() => handleSort('insuranceName')}>Insurance
+                    {
+                      sortDirection === 'asc' 
+                        ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                        : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                    }
+                  </th>
+                  <th onClick={() => handleSort('network')}>Network
+                    {
+                      sortDirection === 'asc' 
+                        ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                        : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                    }
+                  </th>
+                  <th>Res. Units</th>
+                  <th>Res. Admissions</th>
+                  <th>Det. Units</th>
+                  <th>Det. Admissions</th>
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <th style={{minWidth: '200px'}} onClick={() => handleSort('totalCharges')}>Charged
+                          {
+                              sortDirection === 'asc' 
+                                ? <FontAwesomeIcon icon={faChevronDown} className="icon-menu-sort"/>
+                                : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                            }
+                        </th>
+                      : null
+                  }
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <th onClick={() => handleSort('totalPaid')}>Paid
+                          {
+                            sortDirection === 'asc' 
+                              ? <FontAwesomeIcon icon={faChevronDown} className="icon-menu-sort"/>
+                              : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                          }
+                        </th>
+                      : null
+                  }
+                  <th onClick={() => handleSort('payoutRatio')}>Payout %
+                    {
+                      sortDirection === 'asc' 
+                        ? <FontAwesomeIcon icon={faChevronDown} className="icon-menu-sort"/>
+                        : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                    }
+                  </th>
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <th>VOB Decision</th>
+                      : null
+                  }
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <th>VOB %</th>
+                      : null
+                  }
+                  <th onClick={() => handleSort('latestDate')}>Last Updated</th>
                 </tr>
               </thead>
               <tbody>
                 { records.map(record => {
-                    console.log(record.data.latestDate)
                       return(
                         <tr>
                           <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
@@ -151,42 +203,84 @@ const FlaggedTableComponent = (props) => {
           : <table className='table-container-light'>
               <thead>
                 <tr>
-                <th onClick={() => handleSort('prefix')}>Prefix</th>
-                <th onClick={() => handleSort('insurancePolicy')}>Policy</th>
-                <th onClick={() => handleSort('patientName')}>Name</th>
-                <th onClick={() => handleSort('insuranceName')}>Insurance</th>
-                <th onClick={() => handleSort('network')}>Network</th>
-                <th>Res. Units</th>
-                <th>Res. Admissions</th>
-                <th>Det. Units</th>
-                <th>Det. Admissions</th>
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th onClick={() => handleSort('totalCharges')}>Total Charged</th>
-                    : null
-                }
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th onClick={() => handleSort('totalPaid')}>Total Paid</th>
-                    : null
-                }
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                  ? <th onClick={() => handleSort('totalPaid')}>Total Paid</th>
-                  : null
-                }
-                <th onClick={() => handleSort('payoutRatio')}>Payout %</th>
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th>VOB Decision</th>
-                    : null
-                }
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th>VOB %</th>
-                    : null
-                }
-                <th onClick={() => handleSort('latestDate')}>Last Updated</th>
+                  <th className='th-header' onClick={() => handleSort('prefix')}>Prefix
+                      {
+                        sortDirection === 'asc' 
+                          ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                          : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                      }
+                    </th>
+                    <th onClick={() => handleSort('insurancePolicy')}>Policy
+                      {
+                        sortDirection === 'asc' 
+                          ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                          : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                      }
+                    </th>
+                    <th onClick={() => handleSort('patientName')}>Name
+                      {
+                        sortDirection === 'asc' 
+                          ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                          : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                      }
+                    </th>
+                    <th onClick={() => handleSort('insuranceName')}>Insurance
+                      {
+                        sortDirection === 'asc' 
+                          ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                          : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                      }
+                    </th>
+                    <th onClick={() => handleSort('network')}>Network
+                      {
+                        sortDirection === 'asc' 
+                          ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                          : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                      }
+                    </th>
+                    <th>Res. Units</th>
+                    <th>Res. Admissions</th>
+                    <th>Det. Units</th>
+                    <th>Det. Admissions</th>
+                    {
+                      userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                        ? <th onClick={() => handleSort('totalCharges')}>Total Charged
+                            {
+                                sortDirection === 'asc' 
+                                  ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                  : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                              }
+                          </th>
+                        : null
+                    }
+                    {
+                      userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                        ? <th onClick={() => handleSort('totalPaid')}>Total Paid
+                            {
+                              sortDirection === 'asc' 
+                                ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                            }
+                          </th>
+                        : null
+                    }
+                    <th onClick={() => handleSort('payoutRatio')}>Payout %
+                      {
+                        sortDirection === 'asc' 
+                          ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                          : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                      }
+                    </th>
+                    {
+                      userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                        ? <th>VOB Decision</th>
+                        : null
+                    }
+                    {
+                      userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                        ? <th>VOB %</th>
+                        : null
+                    }
                 </tr>
               </thead>
               <tbody>
@@ -233,6 +327,7 @@ const FlaggedTableComponent = (props) => {
               </tbody>
             </table>
       }
+      </div>
     </div>
   )
 }

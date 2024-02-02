@@ -48,40 +48,22 @@ const ContentScreen = (props) => {
                       />
                     </div>
               }
-              <div className='content'>
-                {
-                  contentTab === 'billing'
-                    ? <BillingComponent 
-                        contentTab={contentTab} 
-                        setContentTab={setContentTab} 
-                        userAccess={userAccess}
-                        setCurrentView={setCurrentView}
-                        menuSize={menuSize}
-                        setMenuSize={setMenuSize}
-                        mode={mode}
-                      />
-                    : contentTab === 'daily'
-                        ? <DailyRateComponent 
-                            contentTab={contentTab} 
-                            setContentTab={setContentTab} 
-                            userAccess={userAccess}
-                            setCurrentView={setCurrentView}
-                            menuSize={menuSize}
-                            setMenuSize={setMenuSize}
-                            mode={mode}
-                          />
-                        : contentTab === 'accounts'
-                            ? <AccountComponent 
-                                contentTab={contentTab} 
-                                setContentTab={setContentTab} 
-                                userAccess={userAccess}
-                                setCurrentView={setCurrentView}
-                                menuSize={menuSize}
-                                setMenuSize={setMenuSize}
-                                mode={mode}
-                              />
-                            : contentTab === 'flagged'
-                              ? <FlaggedComponent 
+              {
+                menuSize === 'full'
+                  ? <div className='content-full'>
+                      {
+                        contentTab === 'billing'
+                          ? <BillingComponent 
+                              contentTab={contentTab} 
+                              setContentTab={setContentTab} 
+                              userAccess={userAccess}
+                              setCurrentView={setCurrentView}
+                              menuSize={menuSize}
+                              setMenuSize={setMenuSize}
+                              mode={mode}
+                            />
+                          : contentTab === 'daily'
+                              ? <DailyRateComponent 
                                   contentTab={contentTab} 
                                   setContentTab={setContentTab} 
                                   userAccess={userAccess}
@@ -90,8 +72,8 @@ const ContentScreen = (props) => {
                                   setMenuSize={setMenuSize}
                                   mode={mode}
                                 />
-                              : contentTab === 'tickets'
-                                  ? <TicketComponent 
+                              : contentTab === 'accounts'
+                                  ? <AccountComponent 
                                       contentTab={contentTab} 
                                       setContentTab={setContentTab} 
                                       userAccess={userAccess}
@@ -100,23 +82,113 @@ const ContentScreen = (props) => {
                                       setMenuSize={setMenuSize}
                                       mode={mode}
                                     />
-                                  : contentTab === 'missing'
-                                      ? <MissingComponent 
-                                          contentTab={contentTab} 
-                                          setContentTab={setContentTab} 
-                                          userAccess={userAccess}
-                                          setCurrentView={setCurrentView}
-                                          menuSize={menuSize}
-                                          setMenuSize={setMenuSize}
-                                          mode={mode}
-                                        />
-                                      : contentTab === 'help'
-                                          ? <SupportComponent mode={mode}/>
-                                          : contentTab === 'profile'
-                                              ? <ProfileComponent mode={mode} setMode={setMode}/>
-                                              : null
-                }
-              </div>
+                                  : contentTab === 'flagged'
+                                    ? <FlaggedComponent 
+                                        contentTab={contentTab} 
+                                        setContentTab={setContentTab} 
+                                        userAccess={userAccess}
+                                        setCurrentView={setCurrentView}
+                                        menuSize={menuSize}
+                                        setMenuSize={setMenuSize}
+                                        mode={mode}
+                                      />
+                                    : contentTab === 'tickets'
+                                        ? <TicketComponent 
+                                            contentTab={contentTab} 
+                                            setContentTab={setContentTab} 
+                                            userAccess={userAccess}
+                                            setCurrentView={setCurrentView}
+                                            menuSize={menuSize}
+                                            setMenuSize={setMenuSize}
+                                            mode={mode}
+                                          />
+                                        : contentTab === 'missing'
+                                            ? <MissingComponent 
+                                                contentTab={contentTab} 
+                                                setContentTab={setContentTab} 
+                                                userAccess={userAccess}
+                                                setCurrentView={setCurrentView}
+                                                menuSize={menuSize}
+                                                setMenuSize={setMenuSize}
+                                                mode={mode}
+                                              />
+                                            : contentTab === 'help'
+                                                ? <SupportComponent mode={mode}/>
+                                                : contentTab === 'profile'
+                                                    ? <ProfileComponent mode={mode} setMode={setMode}/>
+                                                    : null
+                      }
+                    </div>
+                  : <div className='content-half'>
+                      {
+                        contentTab === 'billing'
+                          ? <BillingComponent 
+                              contentTab={contentTab} 
+                              setContentTab={setContentTab} 
+                              userAccess={userAccess}
+                              setCurrentView={setCurrentView}
+                              menuSize={menuSize}
+                              setMenuSize={setMenuSize}
+                              mode={mode}
+                            />
+                          : contentTab === 'daily'
+                              ? <DailyRateComponent 
+                                  contentTab={contentTab} 
+                                  setContentTab={setContentTab} 
+                                  userAccess={userAccess}
+                                  setCurrentView={setCurrentView}
+                                  menuSize={menuSize}
+                                  setMenuSize={setMenuSize}
+                                  mode={mode}
+                                />
+                              : contentTab === 'accounts'
+                                  ? <AccountComponent 
+                                      contentTab={contentTab} 
+                                      setContentTab={setContentTab} 
+                                      userAccess={userAccess}
+                                      setCurrentView={setCurrentView}
+                                      menuSize={menuSize}
+                                      setMenuSize={setMenuSize}
+                                      mode={mode}
+                                    />
+                                  : contentTab === 'flagged'
+                                    ? <FlaggedComponent 
+                                        contentTab={contentTab} 
+                                        setContentTab={setContentTab} 
+                                        userAccess={userAccess}
+                                        setCurrentView={setCurrentView}
+                                        menuSize={menuSize}
+                                        setMenuSize={setMenuSize}
+                                        mode={mode}
+                                      />
+                                    : contentTab === 'tickets'
+                                        ? <TicketComponent 
+                                            contentTab={contentTab} 
+                                            setContentTab={setContentTab} 
+                                            userAccess={userAccess}
+                                            setCurrentView={setCurrentView}
+                                            menuSize={menuSize}
+                                            setMenuSize={setMenuSize}
+                                            mode={mode}
+                                          />
+                                        : contentTab === 'missing'
+                                            ? <MissingComponent 
+                                                contentTab={contentTab} 
+                                                setContentTab={setContentTab} 
+                                                userAccess={userAccess}
+                                                setCurrentView={setCurrentView}
+                                                menuSize={menuSize}
+                                                setMenuSize={setMenuSize}
+                                                mode={mode}
+                                              />
+                                            : contentTab === 'help'
+                                                ? <SupportComponent mode={mode}/>
+                                                : contentTab === 'profile'
+                                                    ? <ProfileComponent mode={mode} setMode={setMode}/>
+                                                    : null
+                      }
+                    </div>
+              }
             </div>
           : <div className='content-container-dark'>
               {
@@ -144,50 +216,42 @@ const ContentScreen = (props) => {
                       />
                     </div>
               }
-              <div className='content'>
-                {
-                  contentTab === 'billing'
-                    ? <BillingComponent 
-                        contentTab={contentTab} 
-                        setContentTab={setContentTab} 
-                        userAccess={userAccess}
-                        setCurrentView={setCurrentView}
-                        menuSize={menuSize}
-                        setMenuSize={setMenuSize}
-                        mode={mode}
-                      />
-                    : contentTab === 'daily'
-                        ? <DailyRateComponent 
-                            contentTab={contentTab} 
-                            setContentTab={setContentTab} 
-                            userAccess={userAccess}
-                            setCurrentView={setCurrentView}
-                            menuSize={menuSize}
-                            setMenuSize={setMenuSize}
-                            mode={mode}
-                          />
-                        : contentTab === 'accounts'
-                            ? <AccountComponent 
-                                contentTab={contentTab} 
-                                setContentTab={setContentTab} 
-                                userAccess={userAccess}
-                                setCurrentView={setCurrentView}
-                                menuSize={menuSize}
-                                setMenuSize={setMenuSize}
-                                mode={mode}
-                              />
-                            : contentTab === 'flagged'
-                                ? <FlaggedComponent 
-                                    contentTab={contentTab} 
-                                    setContentTab={setContentTab} 
-                                    userAccess={userAccess}
-                                    setCurrentView={setCurrentView}
-                                    menuSize={menuSize}
-                                    setMenuSize={setMenuSize}
-                                    mode={mode}
-                                  />
-                                : contentTab === 'tickets'
-                                    ? <TicketComponent 
+              {
+                menuSize === 'full'
+                  ? <div className='content-full'>
+                      {
+                        contentTab === 'billing'
+                          ? <BillingComponent 
+                              contentTab={contentTab} 
+                              setContentTab={setContentTab} 
+                              userAccess={userAccess}
+                              setCurrentView={setCurrentView}
+                              menuSize={menuSize}
+                              setMenuSize={setMenuSize}
+                              mode={mode}
+                            />
+                          : contentTab === 'daily'
+                              ? <DailyRateComponent 
+                                  contentTab={contentTab} 
+                                  setContentTab={setContentTab} 
+                                  userAccess={userAccess}
+                                  setCurrentView={setCurrentView}
+                                  menuSize={menuSize}
+                                  setMenuSize={setMenuSize}
+                                  mode={mode}
+                                />
+                              : contentTab === 'accounts'
+                                  ? <AccountComponent 
+                                      contentTab={contentTab} 
+                                      setContentTab={setContentTab} 
+                                      userAccess={userAccess}
+                                      setCurrentView={setCurrentView}
+                                      menuSize={menuSize}
+                                      setMenuSize={setMenuSize}
+                                      mode={mode}
+                                    />
+                                  : contentTab === 'flagged'
+                                    ? <FlaggedComponent 
                                         contentTab={contentTab} 
                                         setContentTab={setContentTab} 
                                         userAccess={userAccess}
@@ -196,8 +260,8 @@ const ContentScreen = (props) => {
                                         setMenuSize={setMenuSize}
                                         mode={mode}
                                       />
-                                    : contentTab === 'missing'
-                                        ? <MissingComponent 
+                                    : contentTab === 'tickets'
+                                        ? <TicketComponent 
                                             contentTab={contentTab} 
                                             setContentTab={setContentTab} 
                                             userAccess={userAccess}
@@ -206,13 +270,93 @@ const ContentScreen = (props) => {
                                             setMenuSize={setMenuSize}
                                             mode={mode}
                                           />
-                                        : contentTab === 'help'
-                                            ? <SupportComponent mode={mode}/>
-                                            : contentTab === 'profile'
-                                                ? <ProfileComponent mode={mode} setMode={setMode}/>
-                                                : null
-                }
-              </div>
+                                        : contentTab === 'missing'
+                                            ? <MissingComponent 
+                                                contentTab={contentTab} 
+                                                setContentTab={setContentTab} 
+                                                userAccess={userAccess}
+                                                setCurrentView={setCurrentView}
+                                                menuSize={menuSize}
+                                                setMenuSize={setMenuSize}
+                                                mode={mode}
+                                              />
+                                            : contentTab === 'help'
+                                                ? <SupportComponent mode={mode}/>
+                                                : contentTab === 'profile'
+                                                    ? <ProfileComponent mode={mode} setMode={setMode}/>
+                                                    : null
+                      }
+                    </div>
+                  : <div className='content-half'>
+                      {
+                        contentTab === 'billing'
+                          ? <BillingComponent 
+                              contentTab={contentTab} 
+                              setContentTab={setContentTab} 
+                              userAccess={userAccess}
+                              setCurrentView={setCurrentView}
+                              menuSize={menuSize}
+                              setMenuSize={setMenuSize}
+                              mode={mode}
+                            />
+                          : contentTab === 'daily'
+                              ? <DailyRateComponent 
+                                  contentTab={contentTab} 
+                                  setContentTab={setContentTab} 
+                                  userAccess={userAccess}
+                                  setCurrentView={setCurrentView}
+                                  menuSize={menuSize}
+                                  setMenuSize={setMenuSize}
+                                  mode={mode}
+                                />
+                              : contentTab === 'accounts'
+                                  ? <AccountComponent 
+                                      contentTab={contentTab} 
+                                      setContentTab={setContentTab} 
+                                      userAccess={userAccess}
+                                      setCurrentView={setCurrentView}
+                                      menuSize={menuSize}
+                                      setMenuSize={setMenuSize}
+                                      mode={mode}
+                                    />
+                                  : contentTab === 'flagged'
+                                    ? <FlaggedComponent 
+                                        contentTab={contentTab} 
+                                        setContentTab={setContentTab} 
+                                        userAccess={userAccess}
+                                        setCurrentView={setCurrentView}
+                                        menuSize={menuSize}
+                                        setMenuSize={setMenuSize}
+                                        mode={mode}
+                                      />
+                                    : contentTab === 'tickets'
+                                        ? <TicketComponent 
+                                            contentTab={contentTab} 
+                                            setContentTab={setContentTab} 
+                                            userAccess={userAccess}
+                                            setCurrentView={setCurrentView}
+                                            menuSize={menuSize}
+                                            setMenuSize={setMenuSize}
+                                            mode={mode}
+                                          />
+                                        : contentTab === 'missing'
+                                            ? <MissingComponent 
+                                                contentTab={contentTab} 
+                                                setContentTab={setContentTab} 
+                                                userAccess={userAccess}
+                                                setCurrentView={setCurrentView}
+                                                menuSize={menuSize}
+                                                setMenuSize={setMenuSize}
+                                                mode={mode}
+                                              />
+                                            : contentTab === 'help'
+                                                ? <SupportComponent mode={mode}/>
+                                                : contentTab === 'profile'
+                                                    ? <ProfileComponent mode={mode} setMode={setMode}/>
+                                                    : null
+                      }
+                    </div>
+              }
             </div>
       }
     </>

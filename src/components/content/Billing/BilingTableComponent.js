@@ -72,371 +72,166 @@ const BilingTableComponent = (props) => {
   return (
     <>
       {
-        showSubTable
-          ? mode === 'light'
-              ?
-                <div className='main-content-area-split-full'>
-                  <div className='main-content-area-split-top'>
-                    <table className='table-container-light'>
-                      <thead>
-                        {
-                          userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                            ? <tr>
-                                {
-                                  viewPrefix
-                                    ? <th>Prefix</th>
-                                    : null
-                                }
-                                {
-                                  viewInsurance
-                                    ? <th>Insurance</th>
-                                    : null
-                                }
-                                {
-                                  viewNetwork
-                                    ? <th>Network</th>
-                                    : null
-                                }
-                                {
-                                  viewFacilityCol
-                                    ? <th>Facility</th>
-                                    : null
-                                }
-                                {
-                                  viewResDays
-                                    ? <th>Res. Units</th>
-                                    : null
-                                }
-                                {
-                                  viewResVisits
-                                    ? <th>Res. Addmissions</th>
-                                    : null
-                                }
-                                {
-                                  viewDetoxDays
-                                    ? <th>Detox Units</th>
-                                    : null
-                                }
-                                {
-                                  viewDetoxVisits
-                                    ? <th>Detox Addmissions</th>
-                                    : null
-                                }
-                                {
-                                  viewTotalCharge
-                                    ? <th>Total Charges</th>
-                                    : null
-                                }
-                                {
-                                  viewTotalPaid
-                                    ? <th>Total Paid</th>
-                                    : null
-                                }
-                                {
-                                  viewPayout
-                                    ? <th>Payout %</th>
-                                    : null
-                                }
-                                {
-                                  viewDeciion
-                                    ? <th>Admission</th>
-                                    : null
-                                }
-                                {
-                                  viewAdmit
-                                    ? <th>Admit %</th>
-                                    : null
-                                }
-                                <th>Details</th>
-                              </tr>
-                            : <tr>
-                                {
-                                  viewPrefix
-                                    ? <th>Prefix</th>
-                                    : null
-                                }
-                                {
-                                  viewInsurance
-                                    ? <th>Insurance</th>
-                                    : null
-                                }
-                                {
-                                  viewNetwork
-                                    ? <th>Network</th>
-                                    : null
-                                }
-                                {
-                                  viewFacilityCol
-                                    ? <th>Facility</th>
-                                    : null
-                                }
-                                {
-                                  viewResDays
-                                    ? <th>Res. Days</th>
-                                    : null
-                                }
-                                {
-                                  viewResVisits
-                                    ? <th>Res. Visits</th>
-                                    : null
-                                }
-                                {
-                                  viewDetoxDays
-                                    ? <th>Detox Days</th>
-                                    : null
-                                }
-                                {
-                                  viewDetoxVisits
-                                    ? <th>Detox Visits</th>
-                                    : null
-                                }
-                                {
-                                  viewPayout
-                                    ? <th>Payout %</th>
-                                    : null
-                                }
-                                {
-                                  viewDeciion
-                                    ? <th>Admission</th>
-                                    : null
-                                }
-                                <th>Details</th>
-                              </tr>
-                        }
-                      </thead>
-                      <tbody>
-                        {
-                          viewTable === 'all'
-                            ? <BillingTableContentComponent 
-                                mode={mode} 
-                                records={billingList}
-                                userAccess={userAccess}
-                                viewPrefix={viewPrefix}
-                                viewInsurance={viewInsurance}
-                                viewNetwork={viewNetwork}
-                                viewFacilityCol={viewFacilityCol}
-                                viewResDays={viewResDays}
-                                viewResVisits={viewResVisits}
-                                viewDetoxDays={viewDetoxDays}
-                                viewDetoxVisits={viewDetoxVisits}
-                                viewTotalCharge={viewTotalCharge}
-                                viewTotalPaid={viewTotalPaid}
-                                viewPayout={viewPayout}
-                                viewDeciion={viewDeciion}
-                                viewAdmit={viewAdmit}
-                                handleShowSubRecords={handleShowSubRecords}
-                                handleCloseSubRecords={handleCloseSubRecords}
-                                selectedRow={selectedRow}
-                                showSubTable={showSubTable}/>
-                            : viewTable === 'affinity'
-                                ? <BillingTableContentComponent 
-                                    mode={mode} 
-                                    records={affinityRecords}
-                                    userAccess={userAccess}
-                                    viewPrefix={viewPrefix}
-                                    viewInsurance={viewInsurance}
-                                    viewNetwork={viewNetwork}
-                                    viewFacilityCol={viewFacilityCol}
-                                    viewResDays={viewResDays}
-                                    viewResVisits={viewResVisits}
-                                    viewDetoxDays={viewDetoxDays}
-                                    viewDetoxVisits={viewDetoxVisits}
-                                    viewTotalCharge={viewTotalCharge}
-                                    viewTotalPaid={viewTotalPaid}
-                                    viewPayout={viewPayout}
-                                    viewDeciion={viewDeciion}
-                                    viewAdmit={viewAdmit}
-                                    handleShowSubRecords={handleShowSubRecords}
-                                    handleCloseSubRecords={handleCloseSubRecords}
-                                    selectedRow={selectedRow}
-                                    showSubTable={showSubTable}/>
-                                : viewTable === 'beachside'
-                                    ? <BillingTableContentComponent 
-                                        mode={mode} 
-                                        records={beacsideRecords}
-                                        userAccess={userAccess}
-                                        viewPrefix={viewPrefix}
-                                        viewInsurance={viewInsurance}
-                                        viewNetwork={viewNetwork}
-                                        viewFacilityCol={viewFacilityCol}
-                                        viewResDays={viewResDays}
-                                        viewResVisits={viewResVisits}
-                                        viewDetoxDays={viewDetoxDays}
-                                        viewDetoxVisits={viewDetoxVisits}
-                                        viewTotalCharge={viewTotalCharge}
-                                        viewTotalPaid={viewTotalPaid}
-                                        viewPayout={viewPayout}
-                                        viewDeciion={viewDeciion}
-                                        viewAdmit={viewAdmit}
-                                        handleShowSubRecords={handleShowSubRecords}
-                                        handleCloseSubRecords={handleCloseSubRecords}
-                                        selectedRow={selectedRow}
-                                        showSubTable={showSubTable}/>
-                                    : viewTable === 'axis'
-                                        ? <BillingTableContentComponent 
-                                            mode={mode} 
-                                            records={axisRecords}
-                                            userAccess={userAccess}
-                                            viewPrefix={viewPrefix}
-                                            viewInsurance={viewInsurance}
-                                            viewNetwork={viewNetwork}
-                                            viewFacilityCol={viewFacilityCol}
-                                            viewResDays={viewResDays}
-                                            viewResVisits={viewResVisits}
-                                            viewDetoxDays={viewDetoxDays}
-                                            viewDetoxVisits={viewDetoxVisits}
-                                            viewTotalCharge={viewTotalCharge}
-                                            viewTotalPaid={viewTotalPaid}
-                                            viewPayout={viewPayout}
-                                            viewDeciion={viewDeciion}
-                                            viewAdmit={viewAdmit}
-                                            handleShowSubRecords={handleShowSubRecords}
-                                            handleCloseSubRecords={handleCloseSubRecords}
-                                            selectedRow={selectedRow}
-                                            showSubTable={showSubTable}/>
-                                        : null
-                        }
-                      </tbody>
-                    </table>
-                  </div>
-                  <SubTableComponent subRecords={subRecords} userAccess={userAccess}/>
-                </div>
-              :
-              <div className='main-content-area-split-full'>
-                <div className='main-content-area-split-top'>
-                  <table className='table-container-dark'>
-                    <thead>
-                      {
-                        userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                          ? <tr>
-                              {
-                                viewPrefix
-                                  ? <th>Prefix</th>
-                                  : null
-                              }
-                              {
-                                viewInsurance
-                                  ? <th>Insurance</th>
-                                  : null
-                              }
-                              {
-                                viewNetwork
-                                  ? <th>Network</th>
-                                  : null
-                              }
-                              {
-                                viewFacilityCol
-                                  ? <th>Facility</th>
-                                  : null
-                              }
-                              {
-                                viewResDays
-                                  ? <th>Res. Days</th>
-                                  : null
-                              }
-                              {
-                                viewResVisits
-                                  ? <th>Res. Visits</th>
-                                  : null
-                              }
-                              {
-                                viewDetoxDays
-                                  ? <th>Detox Days</th>
-                                  : null
-                              }
-                              {
-                                viewDetoxVisits
-                                  ? <th>Detox Visits</th>
-                                  : null
-                              }
-                              {
-                                viewTotalCharge
-                                  ? <th>Total Charges</th>
-                                  : null
-                              }
-                              {
-                                viewTotalPaid
-                                  ? <th>Total Paid</th>
-                                  : null
-                              }
-                              {
-                                viewPayout
-                                  ? <th>Payout %</th>
-                                  : null
-                              }
-                              {
-                                viewDeciion
-                                  ? <th>Admission</th>
-                                  : null
-                              }
-                              {
-                                viewAdmit
-                                  ? <th>Admit %</th>
-                                  : null
-                              }
-                              <th>Details</th>
-                            </tr>
-                          : <tr>
-                              {
-                                viewPrefix
-                                  ? <th>Prefix</th>
-                                  : null
-                              }
-                              {
-                                viewInsurance
-                                  ? <th>Insurance</th>
-                                  : null
-                              }
-                              {
-                                viewNetwork
-                                  ? <th>Network</th>
-                                  : null
-                              }
-                              {
-                                viewFacilityCol
-                                  ? <th>Facility</th>
-                                  : null
-                              }
-                              {
-                                viewResDays
-                                  ? <th>Res. Days</th>
-                                  : null
-                              }
-                              {
-                                viewResVisits
-                                  ? <th>Res. Visits</th>
-                                  : null
-                              }
-                              {
-                                viewDetoxDays
-                                  ? <th>Detox Days</th>
-                                  : null
-                              }
-                              {
-                                viewDetoxVisits
-                                  ? <th>Detox Visits</th>
-                                  : null
-                              }
-                              {
-                                viewPayout
-                                  ? <th>Payout %</th>
-                                  : null
-                              }
-                              {
-                                viewDeciion
-                                  ? <th>Admission</th>
-                                  : null
-                              }
-                              <th>Details</th>
-                            </tr>
-                      }
-                    </thead>
-                    <tbody>
-                      {
-                        viewTable === 'all'
+        mode === 'light'
+        ?
+          <div className='main-content-area-full'>
+            <div className='table-scroll-wrapper'>
+
+              <table className='table-container-light'>
+                <thead>
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <tr>
+                          {
+                            viewPrefix
+                              ? <th>Prefix</th>
+                              : null
+                          }
+                          {
+                            viewInsurance
+                              ? <th>Insurance</th>
+                              : null
+                          }
+                          {
+                            viewNetwork
+                              ? <th>Network</th>
+                              : null
+                          }
+                          {
+                            viewFacilityCol
+                              ? <th>Facility</th>
+                              : null
+                          }
+                          {
+                            viewResDays
+                              ? <th>Res. Days</th>
+                              : null
+                          }
+                          {
+                            viewResVisits
+                              ? <th>Res. Visits</th>
+                              : null
+                          }
+                          {
+                            viewDetoxDays
+                              ? <th>Detox Days</th>
+                              : null
+                          }
+                          {
+                            viewDetoxVisits
+                              ? <th>Detox Visits</th>
+                              : null
+                          }
+                          {
+                            viewTotalCharge
+                              ? <th>Total Charges</th>
+                              : null
+                          }
+                          {
+                            viewTotalPaid
+                              ? <th>Total Paid</th>
+                              : null
+                          }
+                          {
+                            viewPayout
+                              ? <th>Payout %</th>
+                              : null
+                          }
+                          {
+                            viewDeciion
+                              ? <th>Admission</th>
+                              : null
+                          }
+                          {
+                            viewAdmit
+                              ? <th>Admit %</th>
+                              : null
+                          }
+                          <th>Details</th>
+                        </tr>
+                      : <tr>
+                          {
+                            viewPrefix
+                              ? <th>Prefix</th>
+                              : null
+                          }
+                          {
+                            viewInsurance
+                              ? <th>Insurance</th>
+                              : null
+                          }
+                          {
+                            viewNetwork
+                              ? <th>Network</th>
+                              : null
+                          }
+                          {
+                            viewFacilityCol
+                              ? <th>Facility</th>
+                              : null
+                          }
+                          {
+                            viewResDays
+                              ? <th>Res. Days</th>
+                              : null
+                          }
+                          {
+                            viewResVisits
+                              ? <th>Res. Visits</th>
+                              : null
+                          }
+                          {
+                            viewDetoxDays
+                              ? <th>Detox Days</th>
+                              : null
+                          }
+                          {
+                            viewDetoxVisits
+                              ? <th>Detox Visits</th>
+                              : null
+                          }
+                          {
+                            viewPayout
+                              ? <th>Payout %</th>
+                              : null
+                          }
+                          {
+                            viewDeciion
+                              ? <th>Admission</th>
+                              : null
+                          }
+                          <th>Details</th>
+                        </tr>
+                  }
+                </thead>
+                <tbody>
+                  {
+                    viewTable === 'all'
+                      ? <BillingTableContentComponent 
+                          mode={mode} 
+                          records={billingList}
+                          userAccess={userAccess}
+                          viewPrefix={viewPrefix}
+                          viewInsurance={viewInsurance}
+                          viewNetwork={viewNetwork}
+                          viewFacilityCol={viewFacilityCol}
+                          viewResDays={viewResDays}
+                          viewResVisits={viewResVisits}
+                          viewDetoxDays={viewDetoxDays}
+                          viewDetoxVisits={viewDetoxVisits}
+                          viewTotalCharge={viewTotalCharge}
+                          viewTotalPaid={viewTotalPaid}
+                          viewPayout={viewPayout}
+                          viewDeciion={viewDeciion}
+                          viewAdmit={viewAdmit}
+                          handleShowSubRecords={handleShowSubRecords}
+                          handleCloseSubRecords={handleCloseSubRecords}
+                          selectedRow={selectedRow}
+                          showSubTable={showSubTable}/>
+                      : viewTable === 'affinity'
                           ? <BillingTableContentComponent 
                               mode={mode} 
-                              records={billingList}
+                              records={affinityRecords}
                               userAccess={userAccess}
                               viewPrefix={viewPrefix}
                               viewInsurance={viewInsurance}
@@ -455,10 +250,10 @@ const BilingTableComponent = (props) => {
                               handleCloseSubRecords={handleCloseSubRecords}
                               selectedRow={selectedRow}
                               showSubTable={showSubTable}/>
-                          : viewTable === 'affinity'
+                          : viewTable === 'beachside'
                               ? <BillingTableContentComponent 
                                   mode={mode} 
-                                  records={affinityRecords}
+                                  records={beacsideRecords}
                                   userAccess={userAccess}
                                   viewPrefix={viewPrefix}
                                   viewInsurance={viewInsurance}
@@ -477,10 +272,10 @@ const BilingTableComponent = (props) => {
                                   handleCloseSubRecords={handleCloseSubRecords}
                                   selectedRow={selectedRow}
                                   showSubTable={showSubTable}/>
-                              : viewTable === 'beachside'
+                              : viewTable === 'axis'
                                   ? <BillingTableContentComponent 
                                       mode={mode} 
-                                      records={beacsideRecords}
+                                      records={axisRecords}
                                       userAccess={userAccess}
                                       viewPrefix={viewPrefix}
                                       viewInsurance={viewInsurance}
@@ -499,172 +294,170 @@ const BilingTableComponent = (props) => {
                                       handleCloseSubRecords={handleCloseSubRecords}
                                       selectedRow={selectedRow}
                                       showSubTable={showSubTable}/>
-                                  : viewTable === 'axis'
-                                      ? <BillingTableContentComponent 
-                                          mode={mode} 
-                                          records={axisRecords}
-                                          userAccess={userAccess}
-                                          viewPrefix={viewPrefix}
-                                          viewInsurance={viewInsurance}
-                                          viewNetwork={viewNetwork}
-                                          viewFacilityCol={viewFacilityCol}
-                                          viewResDays={viewResDays}
-                                          viewResVisits={viewResVisits}
-                                          viewDetoxDays={viewDetoxDays}
-                                          viewDetoxVisits={viewDetoxVisits}
-                                          viewTotalCharge={viewTotalCharge}
-                                          viewTotalPaid={viewTotalPaid}
-                                          viewPayout={viewPayout}
-                                          viewDeciion={viewDeciion}
-                                          viewAdmit={viewAdmit}
-                                          handleShowSubRecords={handleShowSubRecords}
-                                          handleCloseSubRecords={handleCloseSubRecords}
-                                          selectedRow={selectedRow}
-                                          showSubTable={showSubTable}/>
-                                      : null
-                      }
-                    </tbody>
-                  </table>
-                </div>
-                <SubTableComponent subRecords={subRecords} userAccess={userAccess}/>
-              </div>
-          
-          : mode === 'light'
-              ?
-                <div className='main-content-area-full'>
-                  <table className='table-container-light'>
-                    <thead>
-                      {
-                        userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                          ? <tr>
-                              {
-                                viewPrefix
-                                  ? <th>Prefix</th>
                                   : null
-                              }
-                              {
-                                viewInsurance
-                                  ? <th>Insurance</th>
-                                  : null
-                              }
-                              {
-                                viewNetwork
-                                  ? <th>Network</th>
-                                  : null
-                              }
-                              {
-                                viewFacilityCol
-                                  ? <th>Facility</th>
-                                  : null
-                              }
-                              {
-                                viewResDays
-                                  ? <th>Res. Days</th>
-                                  : null
-                              }
-                              {
-                                viewResVisits
-                                  ? <th>Res. Visits</th>
-                                  : null
-                              }
-                              {
-                                viewDetoxDays
-                                  ? <th>Detox Days</th>
-                                  : null
-                              }
-                              {
-                                viewDetoxVisits
-                                  ? <th>Detox Visits</th>
-                                  : null
-                              }
-                              {
-                                viewTotalCharge
-                                  ? <th>Total Charges</th>
-                                  : null
-                              }
-                              {
-                                viewTotalPaid
-                                  ? <th>Total Paid</th>
-                                  : null
-                              }
-                              {
-                                viewPayout
-                                  ? <th>Payout %</th>
-                                  : null
-                              }
-                              {
-                                viewDeciion
-                                  ? <th>Admission</th>
-                                  : null
-                              }
-                              {
-                                viewAdmit
-                                  ? <th>Admit %</th>
-                                  : null
-                              }
-                              <th>Details</th>
-                            </tr>
-                          : <tr>
-                              {
-                                viewPrefix
-                                  ? <th>Prefix</th>
-                                  : null
-                              }
-                              {
-                                viewInsurance
-                                  ? <th>Insurance</th>
-                                  : null
-                              }
-                              {
-                                viewNetwork
-                                  ? <th>Network</th>
-                                  : null
-                              }
-                              {
-                                viewFacilityCol
-                                  ? <th>Facility</th>
-                                  : null
-                              }
-                              {
-                                viewResDays
-                                  ? <th>Res. Days</th>
-                                  : null
-                              }
-                              {
-                                viewResVisits
-                                  ? <th>Res. Visits</th>
-                                  : null
-                              }
-                              {
-                                viewDetoxDays
-                                  ? <th>Detox Days</th>
-                                  : null
-                              }
-                              {
-                                viewDetoxVisits
-                                  ? <th>Detox Visits</th>
-                                  : null
-                              }
-                              {
-                                viewPayout
-                                  ? <th>Payout %</th>
-                                  : null
-                              }
-                              {
-                                viewDeciion
-                                  ? <th>Admission</th>
-                                  : null
-                              }
-                              <th>Details</th>
-                            </tr>
-                      }
-                    </thead>
-                    <tbody>
-                      {
-                        viewTable === 'all'
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        :
+          <div className='main-content-area-full'>
+            <div className='table-scroll-wrapper'>
+              <table className='table-container-dark'>
+                <thead>
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <tr>
+                          {
+                            viewPrefix
+                              ? <th>Prefix</th>
+                              : null
+                          }
+                          {
+                            viewInsurance
+                              ? <th>Insurance</th>
+                              : null
+                          }
+                          {
+                            viewNetwork
+                              ? <th>Network</th>
+                              : null
+                          }
+                          {
+                            viewFacilityCol
+                              ? <th>Facility</th>
+                              : null
+                          }
+                          {
+                            viewResDays
+                              ? <th>Res. Days</th>
+                              : null
+                          }
+                          {
+                            viewResVisits
+                              ? <th>Res. Visits</th>
+                              : null
+                          }
+                          {
+                            viewDetoxDays
+                              ? <th>Detox Days</th>
+                              : null
+                          }
+                          {
+                            viewDetoxVisits
+                              ? <th>Detox Visits</th>
+                              : null
+                          }
+                          {
+                            viewTotalCharge
+                              ? <th>Total Charges</th>
+                              : null
+                          }
+                          {
+                            viewTotalPaid
+                              ? <th>Total Paid</th>
+                              : null
+                          }
+                          {
+                            viewPayout
+                              ? <th>Payout %</th>
+                              : null
+                          }
+                          {
+                            viewDeciion
+                              ? <th>Admission</th>
+                              : null
+                          }
+                          {
+                            viewAdmit
+                              ? <th>Admit %</th>
+                              : null
+                          }
+                          <th>Details</th>
+                        </tr>
+                      : <tr>
+                          {
+                            viewPrefix
+                              ? <th>Prefix</th>
+                              : null
+                          }
+                          {
+                            viewInsurance
+                              ? <th>Insurance</th>
+                              : null
+                          }
+                          {
+                            viewNetwork
+                              ? <th>Network</th>
+                              : null
+                          }
+                          {
+                            viewFacilityCol
+                              ? <th>Facility</th>
+                              : null
+                          }
+                          {
+                            viewResDays
+                              ? <th>Res. Days</th>
+                              : null
+                          }
+                          {
+                            viewResVisits
+                              ? <th>Res. Visits</th>
+                              : null
+                          }
+                          {
+                            viewDetoxDays
+                              ? <th>Detox Days</th>
+                              : null
+                          }
+                          {
+                            viewDetoxVisits
+                              ? <th>Detox Visits</th>
+                              : null
+                          }
+                          {
+                            viewPayout
+                              ? <th>Payout %</th>
+                              : null
+                          }
+                          {
+                            viewDeciion
+                              ? <th>Admission</th>
+                              : null
+                          }
+                          <th>Details</th>
+                        </tr>
+                  }
+                </thead>
+                <tbody>
+                  {
+                    viewTable === 'all'
+                      ? <BillingTableContentComponent 
+                          mode={mode} 
+                          records={billingList}
+                          userAccess={userAccess}
+                          viewPrefix={viewPrefix}
+                          viewInsurance={viewInsurance}
+                          viewNetwork={viewNetwork}
+                          viewFacilityCol={viewFacilityCol}
+                          viewResDays={viewResDays}
+                          viewResVisits={viewResVisits}
+                          viewDetoxDays={viewDetoxDays}
+                          viewDetoxVisits={viewDetoxVisits}
+                          viewTotalCharge={viewTotalCharge}
+                          viewTotalPaid={viewTotalPaid}
+                          viewPayout={viewPayout}
+                          viewDeciion={viewDeciion}
+                          viewAdmit={viewAdmit}
+                          handleShowSubRecords={handleShowSubRecords}
+                          handleCloseSubRecords={handleCloseSubRecords}
+                          selectedRow={selectedRow}
+                          showSubTable={showSubTable}/>
+                      : viewTable === 'affinity'
                           ? <BillingTableContentComponent 
                               mode={mode} 
-                              records={billingList}
+                              records={affinityRecords}
                               userAccess={userAccess}
                               viewPrefix={viewPrefix}
                               viewInsurance={viewInsurance}
@@ -683,10 +476,10 @@ const BilingTableComponent = (props) => {
                               handleCloseSubRecords={handleCloseSubRecords}
                               selectedRow={selectedRow}
                               showSubTable={showSubTable}/>
-                          : viewTable === 'affinity'
+                          : viewTable === 'beachside'
                               ? <BillingTableContentComponent 
                                   mode={mode} 
-                                  records={affinityRecords}
+                                  records={beacsideRecords}
                                   userAccess={userAccess}
                                   viewPrefix={viewPrefix}
                                   viewInsurance={viewInsurance}
@@ -705,10 +498,10 @@ const BilingTableComponent = (props) => {
                                   handleCloseSubRecords={handleCloseSubRecords}
                                   selectedRow={selectedRow}
                                   showSubTable={showSubTable}/>
-                              : viewTable === 'beachside'
+                              : viewTable === 'axis'
                                   ? <BillingTableContentComponent 
                                       mode={mode} 
-                                      records={beacsideRecords}
+                                      records={axisRecords}
                                       userAccess={userAccess}
                                       viewPrefix={viewPrefix}
                                       viewInsurance={viewInsurance}
@@ -727,257 +520,12 @@ const BilingTableComponent = (props) => {
                                       handleCloseSubRecords={handleCloseSubRecords}
                                       selectedRow={selectedRow}
                                       showSubTable={showSubTable}/>
-                                  : viewTable === 'axis'
-                                      ? <BillingTableContentComponent 
-                                          mode={mode} 
-                                          records={axisRecords}
-                                          userAccess={userAccess}
-                                          viewPrefix={viewPrefix}
-                                          viewInsurance={viewInsurance}
-                                          viewNetwork={viewNetwork}
-                                          viewFacilityCol={viewFacilityCol}
-                                          viewResDays={viewResDays}
-                                          viewResVisits={viewResVisits}
-                                          viewDetoxDays={viewDetoxDays}
-                                          viewDetoxVisits={viewDetoxVisits}
-                                          viewTotalCharge={viewTotalCharge}
-                                          viewTotalPaid={viewTotalPaid}
-                                          viewPayout={viewPayout}
-                                          viewDeciion={viewDeciion}
-                                          viewAdmit={viewAdmit}
-                                          handleShowSubRecords={handleShowSubRecords}
-                                          handleCloseSubRecords={handleCloseSubRecords}
-                                          selectedRow={selectedRow}
-                                          showSubTable={showSubTable}/>
-                                      : null
-                      }
-                    </tbody>
-                  </table>
-                </div>
-              :
-                <div className='main-content-area-full'>
-                <table className='table-container-dark'>
-                  <thead>
-                    {
-                      userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                        ? <tr>
-                            {
-                              viewPrefix
-                                ? <th>Prefix</th>
-                                : null
-                            }
-                            {
-                              viewInsurance
-                                ? <th>Insurance</th>
-                                : null
-                            }
-                            {
-                              viewNetwork
-                                ? <th>Network</th>
-                                : null
-                            }
-                            {
-                              viewFacilityCol
-                                ? <th>Facility</th>
-                                : null
-                            }
-                            {
-                              viewResDays
-                                ? <th>Res. Days</th>
-                                : null
-                            }
-                            {
-                              viewResVisits
-                                ? <th>Res. Visits</th>
-                                : null
-                            }
-                            {
-                              viewDetoxDays
-                                ? <th>Detox Days</th>
-                                : null
-                            }
-                            {
-                              viewDetoxVisits
-                                ? <th>Detox Visits</th>
-                                : null
-                            }
-                            {
-                              viewTotalCharge
-                                ? <th>Total Charges</th>
-                                : null
-                            }
-                            {
-                              viewTotalPaid
-                                ? <th>Total Paid</th>
-                                : null
-                            }
-                            {
-                              viewPayout
-                                ? <th>Payout %</th>
-                                : null
-                            }
-                            {
-                              viewDeciion
-                                ? <th>Admission</th>
-                                : null
-                            }
-                            {
-                              viewAdmit
-                                ? <th>Admit %</th>
-                                : null
-                            }
-                            <th>Details</th>
-                          </tr>
-                        : <tr>
-                            {
-                              viewPrefix
-                                ? <th>Prefix</th>
-                                : null
-                            }
-                            {
-                              viewInsurance
-                                ? <th>Insurance</th>
-                                : null
-                            }
-                            {
-                              viewNetwork
-                                ? <th>Network</th>
-                                : null
-                            }
-                            {
-                              viewFacilityCol
-                                ? <th>Facility</th>
-                                : null
-                            }
-                            {
-                              viewResDays
-                                ? <th>Res. Days</th>
-                                : null
-                            }
-                            {
-                              viewResVisits
-                                ? <th>Res. Visits</th>
-                                : null
-                            }
-                            {
-                              viewDetoxDays
-                                ? <th>Detox Days</th>
-                                : null
-                            }
-                            {
-                              viewDetoxVisits
-                                ? <th>Detox Visits</th>
-                                : null
-                            }
-                            {
-                              viewPayout
-                                ? <th>Payout %</th>
-                                : null
-                            }
-                            {
-                              viewDeciion
-                                ? <th>Admission</th>
-                                : null
-                            }
-                            <th>Details</th>
-                          </tr>
-                    }
-                  </thead>
-                  <tbody>
-                    {
-                      viewTable === 'all'
-                        ? <BillingTableContentComponent 
-                            mode={mode} 
-                            records={billingList}
-                            userAccess={userAccess}
-                            viewPrefix={viewPrefix}
-                            viewInsurance={viewInsurance}
-                            viewNetwork={viewNetwork}
-                            viewFacilityCol={viewFacilityCol}
-                            viewResDays={viewResDays}
-                            viewResVisits={viewResVisits}
-                            viewDetoxDays={viewDetoxDays}
-                            viewDetoxVisits={viewDetoxVisits}
-                            viewTotalCharge={viewTotalCharge}
-                            viewTotalPaid={viewTotalPaid}
-                            viewPayout={viewPayout}
-                            viewDeciion={viewDeciion}
-                            viewAdmit={viewAdmit}
-                            handleShowSubRecords={handleShowSubRecords}
-                            handleCloseSubRecords={handleCloseSubRecords}
-                            selectedRow={selectedRow}
-                            showSubTable={showSubTable}/>
-                        : viewTable === 'affinity'
-                            ? <BillingTableContentComponent 
-                                mode={mode} 
-                                records={affinityRecords}
-                                userAccess={userAccess}
-                                viewPrefix={viewPrefix}
-                                viewInsurance={viewInsurance}
-                                viewNetwork={viewNetwork}
-                                viewFacilityCol={viewFacilityCol}
-                                viewResDays={viewResDays}
-                                viewResVisits={viewResVisits}
-                                viewDetoxDays={viewDetoxDays}
-                                viewDetoxVisits={viewDetoxVisits}
-                                viewTotalCharge={viewTotalCharge}
-                                viewTotalPaid={viewTotalPaid}
-                                viewPayout={viewPayout}
-                                viewDeciion={viewDeciion}
-                                viewAdmit={viewAdmit}
-                                handleShowSubRecords={handleShowSubRecords}
-                                handleCloseSubRecords={handleCloseSubRecords}
-                                selectedRow={selectedRow}
-                                showSubTable={showSubTable}/>
-                            : viewTable === 'beachside'
-                                ? <BillingTableContentComponent 
-                                    mode={mode} 
-                                    records={beacsideRecords}
-                                    userAccess={userAccess}
-                                    viewPrefix={viewPrefix}
-                                    viewInsurance={viewInsurance}
-                                    viewNetwork={viewNetwork}
-                                    viewFacilityCol={viewFacilityCol}
-                                    viewResDays={viewResDays}
-                                    viewResVisits={viewResVisits}
-                                    viewDetoxDays={viewDetoxDays}
-                                    viewDetoxVisits={viewDetoxVisits}
-                                    viewTotalCharge={viewTotalCharge}
-                                    viewTotalPaid={viewTotalPaid}
-                                    viewPayout={viewPayout}
-                                    viewDeciion={viewDeciion}
-                                    viewAdmit={viewAdmit}
-                                    handleShowSubRecords={handleShowSubRecords}
-                                    handleCloseSubRecords={handleCloseSubRecords}
-                                    selectedRow={selectedRow}
-                                    showSubTable={showSubTable}/>
-                                : viewTable === 'axis'
-                                    ? <BillingTableContentComponent 
-                                        mode={mode} 
-                                        records={axisRecords}
-                                        userAccess={userAccess}
-                                        viewPrefix={viewPrefix}
-                                        viewInsurance={viewInsurance}
-                                        viewNetwork={viewNetwork}
-                                        viewFacilityCol={viewFacilityCol}
-                                        viewResDays={viewResDays}
-                                        viewResVisits={viewResVisits}
-                                        viewDetoxDays={viewDetoxDays}
-                                        viewDetoxVisits={viewDetoxVisits}
-                                        viewTotalCharge={viewTotalCharge}
-                                        viewTotalPaid={viewTotalPaid}
-                                        viewPayout={viewPayout}
-                                        viewDeciion={viewDeciion}
-                                        viewAdmit={viewAdmit}
-                                        handleShowSubRecords={handleShowSubRecords}
-                                        handleCloseSubRecords={handleCloseSubRecords}
-                                        selectedRow={selectedRow}
-                                        showSubTable={showSubTable}/>
-                                    : null
-                    }
-                  </tbody>
-                </table>
-              </div>
+                                  : null
+                  }
+                </tbody>
+              </table>
+            </div>
+        </div>
       }
     </>
   )

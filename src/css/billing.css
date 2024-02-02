@@ -34,12 +34,13 @@
 }
 
 .main-content-area-full {
-  width: 100%;
+  width: 99%;
   height: 98%;
   border-radius: 10px;
-  overflow: scroll; 
   margin-left: 12px;
   margin-right: 12px;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 .main-content-area-split-full {
@@ -153,4 +154,29 @@
   font-size: 14px;
   border-bottom: 2px solid black;
   /* 16px vertical padding */
+}
+
+.icon-menu-sort {
+  height: 12px;
+  width: 12px;
+  color: 'white';
+  margin-left: 8px;
+}
+
+.table-scroll-wrapper {
+  max-height: 99vh; /* Adjust based on your layout */
+  max-width: 84vw; /* Adjust if needed */
+}
+
+.table-container-light, .table-container-dark {
+  width: auto; /* Allow table width to expand as needed */
+  min-width: 100%; /* Ensure table takes up at least the full width of its container */
+  border-collapse: collapse;
+}
+
+.table-container-light th,
+.table-container-dark th,
+.table-container-light td,
+.table-container-dark td {
+  min-width: 150px;
 }

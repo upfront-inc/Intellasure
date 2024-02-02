@@ -41,42 +41,86 @@ const MissingTableComponent = (props) => {
 
   return (
     <div className='main-content-area-full'>
-      {
-        mode === 'light'
-          ? <table className='table-container-light'>
-              <thead>
-                <tr>
-                <th>Prefix</th>
-                <th>Policy</th>
-                <th>Name</th>
-                <th>Insurance</th>
-                <th>Network</th>
-                <th>Res. Units</th>
-                <th>Res. Admissions</th>
-                <th>Det. Units</th>
-                <th>Det. Admissions</th>
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th>Total Charged</th>
-                    : null
-                }
-                {
-                  userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                    ? <th>Total Paid</th>
-                    : null
-                }
-                <th>Payout %</th>
-                <th>Last Updated</th>
-                </tr>
-              </thead>
-              <tbody>
-                { records.map(record => {
+      <div className='table-scroll-wrapper'>
+
+        {
+          mode === 'light'
+            ? <table className='table-container-light'>
+                <thead>
+                  <tr>
+                  <th>Prefix</th>
+                  <th>Policy</th>
+                  <th>Name</th>
+                  <th>Insurance</th>
+                  <th>Network</th>
+                  <th>Res. Units</th>
+                  <th>Res. Admissions</th>
+                  <th>Det. Units</th>
+                  <th>Det. Admissions</th>
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <th>Total Charged</th>
+                      : null
+                  }
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <th>Total Paid</th>
+                      : null
+                  }
+                  <th>Payout %</th>
+                  <th>Last Updated</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { records.map(record => {
+                        return(
+                          <tr>
+                            <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
+                            <td>{record.data.insurancePolicy}</td>
+                            <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
+                            <td>{limitString(record.data.insuranceName)}</td>
+                            <td>{record.data.network}</td>
+                            <td>{record.data.RTC.averageDaysOfCare} Days</td>
+                            <td>{record.data.RTC.totalVisits} Visits</td>
+                            <td>{record.data.Detox.averageDaysOfCare} Days</td>
+                            <td>{record.data.Detox.totalVisits} Visits</td>
+                            {
+                              userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                                ? <td>{formatDollarAmount(record.data.totalCharges)}</td>
+                                : null
+                            }
+                            {
+                              userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                                ? <td>{formatDollarAmount(record.data.totalPaid)}</td>
+                                : null
+                            }
+                            <td>{Math.round(record.data.payoutRatio * 100)}%</td>
+                            <td>{record.data.datesPaid || 'NaN'}</td>
+                          </tr>
+                        )
+                      })
+                    }     
+                </tbody>
+              </table>
+            : <table className='table-container-dark'>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Ticket</th>
+                    <th>Subject</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { records.map(record => {
                       return(
                         <tr>
                           <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
-                          <td>{record.data.insurancePolicy}</td>
                           <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
-                          <td>{limitString(record.data.insuranceName)}</td>
+                          <td>{record.data.insurancePolicy}</td>
+                          <td>{record.data.insuranceName}</td>
                           <td>{record.data.network}</td>
                           <td>{record.data.RTC.averageDaysOfCare} Days</td>
                           <td>{record.data.RTC.totalVisits} Visits</td>
@@ -97,52 +141,11 @@ const MissingTableComponent = (props) => {
                         </tr>
                       )
                     })
-                  }     
-              </tbody>
-            </table>
-          : <table className='table-container-dark'>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Ticket</th>
-                  <th>Subject</th>
-                  <th>Status</th>
-                  <th>Details</th>
-                </tr>
-              </thead>
-              <tbody>
-                { records.map(record => {
-                    return(
-                      <tr>
-                        <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
-                        <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
-                        <td>{record.data.insurancePolicy}</td>
-                        <td>{record.data.insuranceName}</td>
-                        <td>{record.data.network}</td>
-                        <td>{record.data.RTC.averageDaysOfCare} Days</td>
-                        <td>{record.data.RTC.totalVisits} Visits</td>
-                        <td>{record.data.Detox.averageDaysOfCare} Days</td>
-                        <td>{record.data.Detox.totalVisits} Visits</td>
-                        {
-                          userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                            ? <td>{formatDollarAmount(record.data.totalCharges)}</td>
-                            : null
-                        }
-                        {
-                          userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                            ? <td>{formatDollarAmount(record.data.totalPaid)}</td>
-                            : null
-                        }
-                        <td>{Math.round(record.data.payoutRatio * 100)}%</td>
-                        <td>{record.data.datesPaid || 'NaN'}</td>
-                      </tr>
-                    )
-                  })
-                }  
-              </tbody>
-            </table>
-      }
+                  }  
+                </tbody>
+              </table>
+        }
+      </div>
     </div>
   )
 }
