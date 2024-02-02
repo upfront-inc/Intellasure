@@ -187,7 +187,7 @@ console.log(sortDirection)
                           <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
                           <td>{record.data.insurancePolicy}</td>
                           <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
-                          <td>{limitString(record.data.insuranceName)}</td>
+                          <td style={{minWidth: '250px'}}>{limitString(record.data.insuranceName)}</td>
                           <td>{record.data.network}</td>
                           <td>{record.data.facility}</td>
                           <td>{Math.round(record.data.RTC.averageDaysOfCare)} Days</td>
@@ -196,8 +196,8 @@ console.log(sortDirection)
                             userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
                               ? record.data.RTC.averageDaysOfCare > 0
                                   ? <td>{formatDollarAmount(Math.round(record.data.totalPaid / (Math.round(record.data.RTC.averageDaysOfCare))))}</td>
-                                  : <td>0</td>
-                              : <td>0</td>
+                                  : <td>$0.00</td>
+                              : <td>$0.00</td>
                           }
                           <td>{Math.round(record.data.Detox.averageDaysOfCare)} Days</td>
                           <td>{record.data.Detox.totalVisits} Visits</td>
@@ -205,8 +205,8 @@ console.log(sortDirection)
                             userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
                               ? record.data.Detox.averageDaysOfCare > 0
                                   ? <td>{formatDollarAmount(Math.round(record.data.totalPaid / (Math.round(record.data.Detox.averageDaysOfCare))))}</td>
-                                  : <td>0</td>
-                              : <td>0</td>
+                                  : <td>$0.00</td>
+                              : <td>$0.00</td>
                           }
                           {
                             userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
@@ -347,13 +347,27 @@ console.log(sortDirection)
                           <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
                           <td>{record.data.insurancePolicy}</td>
                           <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
-                          <td>{limitString(record.data.insuranceName)}</td>
+                          <td style={{minWidth: '250px'}}>{limitString(record.data.insuranceName)}</td>
                           <td>{record.data.network}</td>
                           <td>{record.data.facility}</td>
                           <td>{Math.round(record.data.RTC.averageDaysOfCare)} Days</td>
                           <td>{record.data.RTC.totalVisits} Visits</td>
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? record.data.RTC.averageDaysOfCare > 0
+                                  ? <td>{formatDollarAmount(Math.round(record.data.totalPaid / (Math.round(record.data.RTC.averageDaysOfCare))))}</td>
+                                  : <td>$0.00</td>
+                              : <td>$0.00</td>
+                          }
                           <td>{Math.round(record.data.Detox.averageDaysOfCare)} Days</td>
                           <td>{record.data.Detox.totalVisits} Visits</td>
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? record.data.Detox.averageDaysOfCare > 0
+                                  ? <td>{formatDollarAmount(Math.round(record.data.totalPaid / (Math.round(record.data.Detox.averageDaysOfCare))))}</td>
+                                  : <td>$0.00</td>
+                              : <td>$0.00</td>
+                          }
                           {
                             userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
                               ? <td>{formatDollarAmount(record.data.totalCharges)}</td>
