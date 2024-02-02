@@ -111,16 +111,33 @@ console.log(sortDirection)
                         : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
                     }
                   </th>
+                  <th onClick={() => handleSort('facility')}>Facility
+                    {
+                      sortDirection === 'asc' 
+                        ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                        : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                    }
+                  </th>
                   <th>Res. Units</th>
                   <th>Res. Admissions</th>
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <th>Res. Daily Rate</th>
+                      : null
+                  }
                   <th>Det. Units</th>
                   <th>Det. Admissions</th>
+                  {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <th>Det. Daily Rate</th>
+                      : null
+                  }
                   {
                     userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
                       ? <th style={{minWidth: '200px'}} onClick={() => handleSort('totalCharges')}>Charged
                           {
                               sortDirection === 'asc' 
-                                ? <FontAwesomeIcon icon={faChevronDown} className="icon-menu-sort"/>
+                                ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
                                 : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
                             }
                         </th>
@@ -131,7 +148,7 @@ console.log(sortDirection)
                       ? <th onClick={() => handleSort('totalPaid')}>Paid
                           {
                             sortDirection === 'asc' 
-                              ? <FontAwesomeIcon icon={faChevronDown} className="icon-menu-sort"/>
+                              ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
                               : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
                           }
                         </th>
@@ -140,7 +157,7 @@ console.log(sortDirection)
                   <th onClick={() => handleSort('payoutRatio')}>Payout %
                     {
                       sortDirection === 'asc' 
-                        ? <FontAwesomeIcon icon={faChevronDown} className="icon-menu-sort"/>
+                        ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
                         : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
                     }
                   </th>
@@ -154,7 +171,13 @@ console.log(sortDirection)
                       ? <th>VOB %</th>
                       : null
                   }
-                  <th onClick={() => handleSort('latestDate')}>Last Updated</th>
+                  <th onClick={() => handleSort('latestDate')}>Last Updated
+                    {
+                      sortDirection === 'asc' 
+                        ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                        : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                    }
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -166,10 +189,25 @@ console.log(sortDirection)
                           <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
                           <td>{limitString(record.data.insuranceName)}</td>
                           <td>{record.data.network}</td>
+                          <td>{record.data.facility}</td>
                           <td>{Math.round(record.data.RTC.averageDaysOfCare)} Days</td>
                           <td>{record.data.RTC.totalVisits} Visits</td>
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? record.data.RTC.averageDaysOfCare > 0
+                                  ? <td>{formatDollarAmount(Math.round(record.data.totalPaid / (Math.round(record.data.RTC.averageDaysOfCare))))}</td>
+                                  : <td>0</td>
+                              : <td>0</td>
+                          }
                           <td>{Math.round(record.data.Detox.averageDaysOfCare)} Days</td>
                           <td>{record.data.Detox.totalVisits} Visits</td>
+                          {
+                            userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                              ? record.data.Detox.averageDaysOfCare > 0
+                                  ? <td>{formatDollarAmount(Math.round(record.data.totalPaid / (Math.round(record.data.Detox.averageDaysOfCare))))}</td>
+                                  : <td>0</td>
+                              : <td>0</td>
+                          }
                           {
                             userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
                               ? <td>{formatDollarAmount(record.data.totalCharges)}</td>
@@ -238,6 +276,13 @@ console.log(sortDirection)
                           : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
                       }
                     </th>
+                    <th onClick={() => handleSort('facility')}>Facility
+                      {
+                        sortDirection === 'asc' 
+                          ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                          : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                      }
+                    </th>
                     <th>Res. Units</th>
                     <th>Res. Admissions</th>
                     <th>Det. Units</th>
@@ -281,6 +326,18 @@ console.log(sortDirection)
                         ? <th>VOB %</th>
                         : null
                     }
+                    {
+                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                      ? <th>Daily Pay Rate</th>
+                      : null
+                    }
+                    <th onClick={() => handleSort('latestDate')}>Last Updated
+                    {
+                      sortDirection === 'asc' 
+                        ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                        : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                    }
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -292,6 +349,7 @@ console.log(sortDirection)
                           <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
                           <td>{limitString(record.data.insuranceName)}</td>
                           <td>{record.data.network}</td>
+                          <td>{record.data.facility}</td>
                           <td>{Math.round(record.data.RTC.averageDaysOfCare)} Days</td>
                           <td>{record.data.RTC.totalVisits} Visits</td>
                           <td>{Math.round(record.data.Detox.averageDaysOfCare)} Days</td>

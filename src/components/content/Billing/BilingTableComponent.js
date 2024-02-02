@@ -3,6 +3,8 @@ import BillingTableContentComponent from './BillingTableContentComponent'
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { db } from '../../../auth/Firebase'
 import SubTableComponent from './SubTableComponent'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAnglesDown, faAnglesUp } from '@fortawesome/free-solid-svg-icons'
 
 const BilingTableComponent = (props) => {
   const {
@@ -32,6 +34,10 @@ const BilingTableComponent = (props) => {
     setViewSubTable,
     setSubTablePrefix,
     setSubTableInsurance,
+    setSortField,
+    setSortDirection,
+    sortField,
+    sortDirection,
   } = props
 
   const [showSubTable, setShowSubTable] = useState(false)
@@ -46,6 +52,15 @@ const BilingTableComponent = (props) => {
     setSubTablePrefix(customer.data.prefix)
     setSubTableInsurance(customer.data.insuranceName)
     setViewSubTable(true);
+  };
+
+  const handleSort = (field) => {
+    if (field === sortField) {
+        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+        setSortField(field);
+        setSortDirection('asc');
+    }
   };
 
   const handleCloseSubRecords = () => {
@@ -84,22 +99,46 @@ const BilingTableComponent = (props) => {
                       ? <tr>
                           {
                             viewPrefix
-                              ? <th>Prefix</th>
+                              ? <th onClick={() => handleSort('prefix')}>Prefix
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewInsurance
-                              ? <th>Insurance</th>
+                              ? <th onClick={() => handleSort('insuranceName')}>Insurance
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewNetwork
-                              ? <th>Network</th>
+                              ? <th onClick={() => handleSort('network')}>Network
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewFacilityCol
-                              ? <th>Facility</th>
+                              ? <th onClick={() => handleSort('facility')}>Facility
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
@@ -124,27 +163,57 @@ const BilingTableComponent = (props) => {
                           }
                           {
                             viewTotalCharge
-                              ? <th>Total Charges</th>
+                              ? <th onClick={() => handleSort('prefixChargeAverage')}>Total Charges
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewTotalPaid
-                              ? <th>Total Paid</th>
+                              ? <th onClick={() => handleSort('prefixPaidAverage')}>Total Paid
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewPayout
-                              ? <th>Payout %</th>
+                              ? <th onClick={() => handleSort('payoutRatio')}>Payout %
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewDeciion
-                              ? <th>Admission</th>
+                              ? <th onClick={() => handleSort('vobDecision')}>Admission
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewAdmit
-                              ? <th>Admit %</th>
+                              ? <th onClick={() => handleSort('vobPercent')}>Admit %
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           <th>Details</th>
@@ -152,22 +221,46 @@ const BilingTableComponent = (props) => {
                       : <tr>
                           {
                             viewPrefix
-                              ? <th>Prefix</th>
+                              ? <th onClick={() => handleSort('prefix')}>Prefix
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewInsurance
-                              ? <th>Insurance</th>
+                              ? <th onClick={() => handleSort('insuranceName')}>Insurance
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewNetwork
-                              ? <th>Network</th>
+                              ? <th onClick={() => handleSort('network')}>Network
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewFacilityCol
-                              ? <th>Facility</th>
+                              ? <th onClick={() => handleSort('facility')}>Facility
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
@@ -192,12 +285,24 @@ const BilingTableComponent = (props) => {
                           }
                           {
                             viewPayout
-                              ? <th>Payout %</th>
+                              ? <th onClick={() => handleSort('payoutRatio')}>Payout %
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewDeciion
-                              ? <th>Admission</th>
+                              ? <th onClick={() => handleSort('vobDecision')}>Admission
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           <th>Details</th>
@@ -310,22 +415,46 @@ const BilingTableComponent = (props) => {
                       ? <tr>
                           {
                             viewPrefix
-                              ? <th>Prefix</th>
+                              ? <th onClick={() => handleSort('prefix')}>Prefix
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewInsurance
-                              ? <th>Insurance</th>
+                              ? <th onClick={() => handleSort('insuranceName')}>Insurance
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewNetwork
-                              ? <th>Network</th>
+                              ? <th onClick={() => handleSort('network')}>Network
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewFacilityCol
-                              ? <th>Facility</th>
+                              ? <th onClick={() => handleSort('facility')}>Facility
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
@@ -350,27 +479,57 @@ const BilingTableComponent = (props) => {
                           }
                           {
                             viewTotalCharge
-                              ? <th>Total Charges</th>
+                              ? <th onClick={() => handleSort('prefixChargeAverage')}>Total Charges
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewTotalPaid
-                              ? <th>Total Paid</th>
+                              ? <th onClick={() => handleSort('prefixPaidAverage')}>Total Paid
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewPayout
-                              ? <th>Payout %</th>
+                              ? <th onClick={() => handleSort('payoutRatio')}>Payout %
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewDeciion
-                              ? <th>Admission</th>
+                              ? <th onClick={() => handleSort('vobDecision')}>Admission
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewAdmit
-                              ? <th>Admit %</th>
+                              ? <th onClick={() => handleSort('vobPercent')}>Admit %
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           <th>Details</th>
@@ -378,22 +537,46 @@ const BilingTableComponent = (props) => {
                       : <tr>
                           {
                             viewPrefix
-                              ? <th>Prefix</th>
+                              ? <th onClick={() => handleSort('prefix')}>Prefix
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewInsurance
-                              ? <th>Insurance</th>
+                              ? <th onClick={() => handleSort('insuranceName')}>Insurance
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewNetwork
-                              ? <th>Network</th>
+                              ? <th onClick={() => handleSort('networl')}>Network
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewFacilityCol
-                              ? <th>Facility</th>
+                              ? <th onClick={() => handleSort('facility')}>Facility
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
@@ -418,12 +601,24 @@ const BilingTableComponent = (props) => {
                           }
                           {
                             viewPayout
-                              ? <th>Payout %</th>
+                              ? <th onClick={() => handleSort('payoutRatio')}>Payout %
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           {
                             viewDeciion
-                              ? <th>Admission</th>
+                              ? <th onClick={() => handleSort('vobDecision')}>Admission
+                                {
+                                  sortDirection === 'asc' 
+                                    ? <FontAwesomeIcon icon={faAnglesDown} className="icon-menu-sort"/>
+                                    : <FontAwesomeIcon icon={faAnglesUp} className="icon-menu-sort"/>
+                                }
+                              </th>
                               : null
                           }
                           <th>Details</th>

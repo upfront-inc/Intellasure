@@ -100,64 +100,66 @@ const PrefixDetailsComponent = (props) => {
       <div onClick={() => {handleCloseSubtable()}} className='hover-paragraph' style={{display: 'flex', flexDirection: 'row', marginBottom: '16px'}}>
         <p style={{marginRight: 8, color: 'red'}}>Close</p>
       </div>
-      <table className='table-container-dark'>
-        <thead>
-          <tr>
-            <th>Prefix</th>
-            <th>Name</th>
-            <th>Policy</th>
-            <th>Insurance</th>
-            <th>Network</th>
-            <th>Res. Units</th>
-            <th>Res. Admissions</th>
-            <th>Det. Units</th>
-            <th>Det. Admissions</th>
+      <div className='table-scroll-wrapper'>
+        <table className='table-container-dark'>
+          <thead>
+            <tr>
+              <th>Prefix</th>
+              <th>Name</th>
+              <th>Policy</th>
+              <th>Insurance</th>
+              <th>Network</th>
+              <th>Res. Units</th>
+              <th>Res. Admissions</th>
+              <th>Det. Units</th>
+              <th>Det. Admissions</th>
+              {
+                userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                  ? <th>Total Charged</th>
+                  : null
+              }
+              {
+                userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                  ? <th>Total Paid</th>
+                  : null
+              }
+              <th>Payout %</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody>
             {
-              userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                ? <th>Total Charged</th>
-                : null
+              subRecrds.map(record => {
+                return(
+                  <tr>
+                    <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
+                    <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
+                    <td>{record.data.insurancePolicy}</td>
+                    <td>{record.data.insuranceName}</td>
+                    <td>{record.data.network}</td>
+                    <td>{record.data.RTC.averageDaysOfCare} Days</td>
+                    <td>{record.data.RTC.totalVisits} Visits</td>
+                    <td>{record.data.Detox.averageDaysOfCare} Days</td>
+                    <td>{record.data.Detox.totalVisits} Visits</td>
+                    {
+                      userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                        ? <td>{formatDollarAmount(record.data.totalCharges)}</td>
+                        : null
+                    }
+                    {
+                      userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
+                        ? <td>{formatDollarAmount(record.data.totalPaid)}</td>
+                        : null
+                    }
+                    <td>{Math.round(record.data.payoutRatio * 100)}%</td>
+                    <td>{getLatestDate(record.data.datesPaid)}</td>
+                  </tr>
+                )
+              })
             }
-            {
-              userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                ? <th>Total Paid</th>
-                : null
-            }
-            <th>Payout %</th>
-            <th>Last Updated</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            subRecrds.map(record => {
-              return(
-                <tr>
-                  <td style={{fontWeight: 'bold'}}>{record.data.prefix}</td>
-                  <td>{record.data.first_name} {getFirstLetter(record.data.last_name)}. </td>
-                  <td>{record.data.insurancePolicy}</td>
-                  <td>{record.data.insuranceName}</td>
-                  <td>{record.data.network}</td>
-                  <td>{record.data.RTC.averageDaysOfCare} Days</td>
-                  <td>{record.data.RTC.totalVisits} Visits</td>
-                  <td>{record.data.Detox.averageDaysOfCare} Days</td>
-                  <td>{record.data.Detox.totalVisits} Visits</td>
-                  {
-                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                      ? <td>{formatDollarAmount(record.data.totalCharges)}</td>
-                      : null
-                  }
-                  {
-                    userAccess === 'admin' || userAccess==='dev' || userAccess==='owner'
-                      ? <td>{formatDollarAmount(record.data.totalPaid)}</td>
-                      : null
-                  }
-                  <td>{Math.round(record.data.payoutRatio * 100)}%</td>
-                  <td>{getLatestDate(record.data.datesPaid)}</td>
-                </tr>
-              )
-            })
-          }
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

@@ -11,10 +11,7 @@ const BillingSearchComponent = (props) => {
     searchCurrentQuery,
     activeSearch,
     clearSearch,
-    setSort,
     setViewTable,
-    setViewPrefix,
-    setViewInsurance,
     setViewNetwork,
     setViewFacilityCol,
     setViewResDays,
@@ -26,8 +23,6 @@ const BillingSearchComponent = (props) => {
     setViewPayout,
     setViewDeciion,
     setViewAdmit,
-    viewPrefix,
-    viewInsurance,
     viewNetwork,
     viewFacilityCol,
     viewResDays,
@@ -39,22 +34,29 @@ const BillingSearchComponent = (props) => {
     viewPayout,
     viewDeciion,
     viewAdmit,
-    userAccess
+    userAccess,
+    setSortField,
+    setSortDirection,
+    sortField,
+    sortDirection,
   } = props
 
-  const [showSortOptions, setShowSortOptions] = useState(false);
   const [showFacilityFilter, setShowFacilityFilter] = useState(false);
   const [showFilterOptions, setShowFilterOptions] = useState(false);
 
 
-  const handleSortOptionClick = (option) => {
-    setSort(option)
-    setShowSortOptions(false);
-  };
-
   const handleFacilityFilterClick = (facility) => {
     setViewTable(facility)
     setShowFacilityFilter(false);
+  };
+
+  const handleSort = (field) => {
+    if (field === sortField) {
+        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+        setSortField(field);
+        setSortDirection('asc');
+    }
   };
 
   return (
@@ -75,19 +77,6 @@ const BillingSearchComponent = (props) => {
                     ? <p onClick={() => {clearSearch()}} className='search-red hover-paragraph'>Clear</p>
                     : <p onClick={() => {searchCurrentQuery()}} className='search hover-paragraph'>Search</p>
                 }
-              </div>
-              <div onClick={() => setShowSortOptions(!showSortOptions)}  className='button-container'>
-                <FontAwesomeIcon icon={faSort} className="tb-icon-menu"/>
-                <p className='button-text'>Sort</p>
-              </div>
-              <div className={showSortOptions ? 'sort-options-container visible' : 'sort-options-container'}>
-                <div onClick={() => handleSortOptionClick('prefix')}>Prefix</div>
-                <div onClick={() => handleSortOptionClick('insuranceName')}>Insurance</div>
-                <div onClick={() => handleSortOptionClick('facility')}>Facility</div>
-                <div onClick={() => handleSortOptionClick('network')}>Network</div>
-                <div onClick={() => handleSortOptionClick('prefixChargeAverage')}>Total Charges</div>
-                <div onClick={() => handleSortOptionClick('prefixPaidAverage')}>Total Paid</div>
-                <div onClick={() => handleSortOptionClick('payoutRatio')}>Payout Ratio</div>
               </div>
               <div onClick={() => setShowFilterOptions(!showFilterOptions)} className='button-container button-end'>
                 <FontAwesomeIcon icon={faFilter} className="tb-icon-menu"/>
@@ -139,19 +128,6 @@ const BillingSearchComponent = (props) => {
                   onChange={handleSearchChange}
                 />
                 <p onClick={() => {searchCurrentQuery()}} className='search'>Search</p>
-              </div>
-              <div onClick={() => setShowSortOptions(!showSortOptions)}  className='button-container hover-paragraph'>
-                <FontAwesomeIcon icon={faSort} className="tb-icon-menu"/>
-                <p className='button-text'>Sort</p>
-              </div>
-              <div className={showSortOptions ? 'sort-options-container-dark visible' : 'sort-options-container-dark'}>
-                <div onClick={() => handleSortOptionClick('prefix')}>Prefix</div>
-                <div onClick={() => handleSortOptionClick('insuranceName')}>Insurance</div>
-                <div onClick={() => handleSortOptionClick('facility')}>Facility</div>
-                <div onClick={() => handleSortOptionClick('network')}>Network</div>
-                <div onClick={() => handleSortOptionClick('totalCharges')}>Total Charges</div>
-                <div onClick={() => handleSortOptionClick('totalPaid')}>Total Paid</div>
-                <div onClick={() => handleSortOptionClick('payoutRatio')}>Payout Ratio</div>
               </div>
               <div onClick={() => setShowFilterOptions(!showFilterOptions)} className='button-container button-end'>
                 <FontAwesomeIcon icon={faFilter} className="tb-icon-menu"/>

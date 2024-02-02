@@ -39,6 +39,9 @@ const BillingComponent = (props) => {
   const [subTablePrefix, setSubTablePrefix] = useState('')
   const [subTableInsurance, setSubTableInsurance] = useState('')
 
+  const [sortField, setSortField] = useState('');
+  const [sortDirection, setSortDirection] = useState('asc');
+
   useEffect(() => {
     grabBilling()
   }, [])
@@ -48,6 +51,10 @@ const BillingComponent = (props) => {
     searchSortQuery()
   }, [sort])
 
+  useEffect(() => {
+    grabBilling()
+  }, [sortField, sortDirection])
+
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value)
   }
@@ -56,7 +63,10 @@ const BillingComponent = (props) => {
     let affinity = []
     let beachside = []
     let axis = []
-    const colRef = collection(db, 'BillingDetailsPrefixVOB')
+    let colRef = collection(db, 'BillingDetailsPrefixVOB')
+    if (sortField) {
+      colRef = query(colRef, orderBy(sortField, sortDirection))
+    }
     onSnapshot(colRef, snapshot => {
         let billings = [];
         snapshot.docs.forEach(doc => {
@@ -135,8 +145,6 @@ const BillingComponent = (props) => {
                   activeSearch={activeSearch}
                   setActiveSearch={setActiveSearch}
                   clearSearch={clearSearch}
-                  setSort={setSort}
-                  setViewTable={setViewTable}
 
                   viewPrefix={viewPrefix}
                   viewInsurance={viewInsurance}
@@ -193,6 +201,11 @@ const BillingComponent = (props) => {
                   viewPayout={viewPayout}
                   viewDeciion={viewDeciion}
                   viewAdmit={viewAdmit}
+
+                  setSortField={setSortField}
+                  setSortDirection={setSortDirection}
+                  sortField={sortField}
+                  sortDirection={sortDirection}
                   
                   viewSubTable={viewSubTable}
                   setViewSubTable={setViewSubTable}
@@ -278,6 +291,11 @@ const BillingComponent = (props) => {
                       viewPayout={viewPayout}
                       viewDeciion={viewDeciion}
                       viewAdmit={viewAdmit}
+
+                      setSortField={setSortField}
+                      setSortDirection={setSortDirection}
+                      sortField={sortField}
+                      sortDirection={sortDirection}
 
                       viewSubTable={viewSubTable}
                       setViewSubTable={setViewSubTable}
